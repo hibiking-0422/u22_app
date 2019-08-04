@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+
+<style>
+@charset "UTF-8";
+    * { padding: 0; margin: 0; }
+
+    canvas { background: eee
+; display: block; margin: 0 auto; }
+</style>
+
+<title>アンケートフォーム</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div align="center">
+<h1>アンケート送信完了！</h1>
+
+<?php
+//入力値の取得
+$uname=htmlspecialchars($_POST["uname"],ENT_QUOTES,"UTF-8");
+$email=htmlspecialchars($_POST["email"],ENT_QUOTES,"UTF-8");
+$gender=htmlspecialchars($_POST["gender"],ENT_QUOTES,"UTF-8");
+$job=htmlspecialchars($_POST["job"],ENT_QUOTES,"UTF-8");
+$getbike=htmlspecialchars($_POST["getbike"],ENT_QUOTES,"UTF-8");
+$rate1=htmlspecialchars($_POST["rate1"],ENT_QUOTES,"UTF-8");
+$rate2=htmlspecialchars($_POST["rate2"],ENT_QUOTES,"UTF-8");
+$tec=htmlspecialchars($_POST["tec"],ENT_QUOTES,"UTF-8");
+$janle=htmlspecialchars($_POST["janle"],ENT_QUOTES,"UTF-8");
+$dm=htmlspecialchars($_POST["dm"],ENT_QUOTES,"UTF-8");
+$message=htmlspecialchars($_POST["message"],ENT_QUOTES,"UTF-8");
+$rate3=htmlspecialchars($_POST["rate3"],ENT_QUOTES,"UTF-8");
+//回答を書き込む準備
+$line=array($uname,$email,$gender,$job,$getbike,$rate1,$rate2,$tec,$janle,$dm,$message);
+//ファイルへの書き込み
+$file_name="answer.csv";
+$fp=fopen($file_name,"a");
+$return=fputcsv($fp,$line);
+fclose($fp);
+
+if($return)
+{
+$result_message="ご回答ありがとうございました!";
+}
+else
+{
+$result_message="エラーが発生しました。";
+} 
+?>
+<p><?php echo $result_message; ?></p>
+
+</div >
+
+<canvas id="myCanvas" width="960" height="640"</
+canvas>
+<div align="center">
+↑はおまけのミニゲームです。頑張ってやってみてください！<br>
+※結構難しいです。製作者（山口響生）は１時間やってもクリアできませんでした。<br>
+操作方法：マウスまたは方向キー
+</div>
+<script>
+var canvas = document.getElementById("myCanvas"); //HtMLのmycavasからidを受け取る
+var ctx = canvas.getContext("2d"); //canvasを2D
+
+//ボールの定義
+var x = canvas.width/2;
+var y = canvas.height-30;
+var dx = 10;
+var dy = -10;
+var ballRadius = 10;
+//操作バーの定義
+var paddleHeight = 10;
+var paddleWidth = 150;
+var paddleX = (canvas.width-paddleWidth)/2;
+//ボタンの定義
+var rightPressed = false;
+var leftPressed = false;
+//ブロックの定義
+var brickRowCount = 8;
+var brickColumnCount = 11;
+var brickWidth = 75;
+var brickHeight = 20;
+var brickPadding = 10;
+var brickOffsetTop = 30;
+var brickOffsetLeft = 30;
+var score = 0;
+var lives = 3;
+var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
+var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
+var bricks = [];
+var bricks = [];
+for(var c=0; c<brickColumnCount; c++) 
+{
+bricks[c] = [];
+for(var r=0; r<brickRowCount; r++) 
+{
+bricks[c][r] = { x: 0, y: 0, status: 1 };
+}
+}
+
+function drawBall() 
+{
+ctx.beginPath();
+ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+ctx.fillStyle = "#0095DD";
+ctx.fill();
+ctx.closePath();
+}
+
+function draw()
+{
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+drawBall();
+drawPaddle();
+drawScore();
+drawLives();
+collisionDetection();
+drawBricks();
+x += dx;
+y += dy;
+
+if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) 
+{
+dx = -dx;
+}
+
+if(y + dy < ballRadius) 
+{
+dy = -dy;
+} 
+if(y + dy < ballRadius) 
+{
+dy = -dy;
+} 
+else if(y + dy > canvas.height-ballRadius) 
+{
+if(x > paddleX && x < paddleX + paddleWidth) 
+{
+dy = -dy;
+}
+else 
+{
+lives--;
+if(!lives) 
+{
+alert("GAME OVER");
+document.location.reload();
+clearInterval(interval);
+}
+else 
+{
+x = canvas.width/2;
+y = canvas.height-30;
+dx = 10;
+dy = -10;
+paddleX = (canvas.width-paddleWidth)/2;
+}
+}
+}
+
+if(rightPressed && paddleX < canvas.width-paddleWidth) 
+{
+paddleX += 14;
+}
+else if(leftPressed && paddleX > 0) 
+{
+paddleX -= 14;
+}
+}
+
+function drawPaddle() 
+{
+ctx.beginPath();
+ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
+ctx.fillStyle = "#0095DD";
+ctx.fill();
+ctx.closePath();
+}
+
+function drawBricks() 
+{
+for(var c=0; c<brickColumnCount; c++) 
+{
+for(var r=0; r<brickRowCount; r++) 
+{
+if(bricks[c][r].status == 1) 
+{
+var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
+var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
+bricks[c][r].x = brickX;
+bricks[c][r].y = brickY;
+ctx.beginPath();
+ctx.rect(brickX, brickY, brickWidth, brickHeight);
+ctx.fillStyle = "#0095DD";
+ctx.fill();
+ctx.closePath();
+}
+}
+}
+}
+
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+document.addEventListener("mousemove", mouseMoveHandler, false);
+
+function mouseMoveHandler(e) 
+{
+var relativeX = e.clientX - canvas.offsetLeft;
+if(relativeX > 0 && relativeX < canvas.width) 
+{
+paddleX = relativeX - paddleWidth/2;
+}
+}
+
+function keyDownHandler(e) 
+{
+if(e.key == "Right" || e.key == "ArrowRight") 
+{
+rightPressed = true;
+}
+else if(e.key == "Left" || e.key == "ArrowLeft") 
+{
+leftPressed = true;
+}
+}
+
+function keyUpHandler(e) 
+{
+if(e.key == "Right" || e.key == "ArrowRight") 
+{
+rightPressed = false;
+}
+else if(e.key == "Left" || e.key == "ArrowLeft") 
+{
+leftPressed = false;
+}
+}
+
+function collisionDetection() {
+for(var c=0; c<brickColumnCount; c++) {
+for(var r=0; r<brickRowCount; r++) {
+var b = bricks[c][r];
+if(b.status == 1) {
+if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
+dy = -dy;
+b.status = 0;
+score++;
+if(score == brickRowCount*brickColumnCount) {
+alert("YOU WIN, CONGRATULATIONS!:この画面を山口に見せたらなんかお菓子あげます");
+document.location.reload();
+}
+}
+}
+}
+}
+}
+
+function drawScore() 
+{
+ctx.font = "16px Arial";
+ctx.fillStyle = "#0095DD";
+ctx.fillText("Score: "+score, 8, 20);
+} 
+
+function drawLives() 
+{
+ctx.font = "16px Arial";
+ctx.fillStyle = "#0095DD";
+ctx.fillText("Lives: "+lives, canvas.width-65, 20);
+}
+
+var interval = setInterval(draw, 10);
+</script>
+
+</body>
+</html>
