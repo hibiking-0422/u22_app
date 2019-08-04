@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'calendars/index'
+  get 'calendars/show'
   devise_for :users
   get 'accesses/hello'
   get 'accesses/goodbye'
