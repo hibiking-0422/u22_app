@@ -17,3 +17,6 @@ module U22App
     # the framework and any gems in your application.
   end
 end
+
+require 'rails/all'
+require 'csv'

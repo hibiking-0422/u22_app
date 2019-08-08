@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_04_053140) do
+ActiveRecord::Schema.define(version: 2019_08_08_120021) do
+
+  create_table "scores", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "answer"
+    t.string "field"
+    t.string "fin_field"
+    t.string "question"
+    t.string "study_day"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
