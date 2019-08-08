@@ -15,11 +15,14 @@
     <header>
         <nav>
         <% if user_signed_in? %>
-            <%= link_to 'edit profile', edit_user_registration_path %>
-            <%= link_to 'logout', destroy_user_session_path, method: :delete %>
+            <%= link_to 'カレンダー', edit_user_registration_path %>
+            <%= link_to '勉強する', edit_user_registration_path %>
+            <%= link_to '正答率', scores_path %>
+            <%= link_to 'アカウント編集', edit_user_registration_path %>
+            <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
         <% else %>
-            <%= link_to 'registration', new_user_registration_path %>
-            <%= link_to 'login', new_user_session_path %>
+            <%= link_to '新規登録', new_user_registration_path %>
+            <%= link_to 'ログイン', new_user_session_path %>
             <% end %>
         </nav>
     </header>

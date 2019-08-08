@@ -1,2 +1,36 @@
-<h1>Calendars#show</h1>
-<p>Find me in app/views/calendars/show.html.erb</p>
+<script type="text/javascript"><!--
+var now = new Date();
+var year = now.getFullYear();
+var month = now.getMonth() + 1;
+var today = now.getDate();
+now.setDate(1);
+var startDay = now.getDay();
+var monthdays = new Array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+var dateMax = monthdays[month - 1];
+if (month == 2 &&
+  ((year%4 == 0 && year%100 != 0) || year%400 == 0)) dateMax = 29;
+var days = new Array("日", "月", "火", "水", "木", "金", "土");
+document.write("<table border=1 bgcolor='#ffffff'>\n"
+  + "<tr><th colspan=7 bgcolor='#f5f5dc'>"
+  + year + "年 " + month + "月</th></tr>\n");
+document.write("<tr><th bgcolor='#ffc3ce'>" + days[0] + "</th>");
+for (i = 1; i < 6; i++) document.write("<th>" + days[i] + "</th>");
+document.write("<th bgcolor='#add8e6'>" + days[6] + "</th></tr>\n");
+var col = 0;
+if (startDay > 0) {
+  document.write("<tr>");
+  for ( ; col < startDay; col++) document.write("<td>&nbsp;</td>");
+}
+for (i = 1; i <= dateMax; i++) {
+  if (col == 0) document.write("<tr>");
+  if (i == today) document.write("<td bgcolor='#ffc3ce'>" + i + "</td>");
+  else document.write("<td>" + i + "</td>");
+  if (col == 6) { document.write("</tr>\n"); col = 0; } else col++;
+}
+if (col != 0) {
+  for ( ; col < 7; col++) document.write("<td>&nbsp;</td>");
+  document.write("</tr>\n");
+}
+document.write("</table>\n");
+//-->
+</script>
