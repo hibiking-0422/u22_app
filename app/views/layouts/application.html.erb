@@ -16,8 +16,8 @@
         <nav>
         <% if user_signed_in? %>
             <%= link_to 'カレンダー', edit_user_registration_path %>
-            <%= link_to '勉強する', edit_user_registration_path %>
-            <%= link_to '正答率', scores_path %>
+            <%= link_to '勉強する', new_timer_path %>
+             <%= link_to '正答率', account_path(current_user.id) %>
             <%= link_to 'アカウント編集', edit_user_registration_path %>
             <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
             <%= current_user.id%>

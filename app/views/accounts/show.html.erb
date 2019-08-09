@@ -20,10 +20,12 @@
         <td><%= score.study_day %></td>
       </tr>
     <% end %>
+
+  <%=@tec_total%>
+  <%=@stra_total%>
+  <%=@mana_total%>
+
+
   </tbody>
 </table>
 
-<%= form_tag import_scores_path, multipart: true do %>
-    <%= file_field_tag :file %>
-    <%= submit_tag "インポート" %>
-  <% end %>
