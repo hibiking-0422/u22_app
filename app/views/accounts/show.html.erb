@@ -33,3 +33,13 @@
 ストラテジ系:<%=@stra_per%>％ <%=@stra_total%>問中<%=@stra_ans%>問正解<br>
 </p>
 
+<br>
+
+
+<%=p @genes%>
+
+<br>
+
+<% @genes.each do |gene|%>
+<%=gene[0]%>:<%=gene[3]%>% <%=gene[2]%>問中<%=gene[1]%>問正解<br>
+<% end %>

@@ -10,6 +10,16 @@ class AccountsController < ApplicationController
 
 
 
+    
+    @genes = Field.sepa(@scores)
+
+
+
+  
+
+
+
+
     @tec_ans = @scores.where(answer:'○').where(field:'テクノロジ系').count
     @tec_total =  @scores.where(field:'テクノロジ系').count
     @tec_per = ((@tec_ans / @tec_total.to_f) * 100).floor
@@ -22,7 +32,6 @@ class AccountsController < ApplicationController
     @stra_total =  @scores.where(field:'ストラテジ系').count
     @stra_per = ((@stra_ans / @stra_total.to_f) * 100).floor
 
-    
   end
 end
 
