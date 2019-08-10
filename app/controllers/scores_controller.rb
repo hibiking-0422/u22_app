@@ -12,6 +12,10 @@ class ScoresController < ApplicationController
             question: row[5],
             study_day: row [6]
           )
+        #modelの値が存在しないときに処理をやめる。なぜか最後に空白行が入るから。
+          if @model.answer.nil? 
+            redirect_to account_path(current_user.id) and return 
+          end
         #modelをデータベースに保存
           @model.user_id = current_user.id
           @model.save

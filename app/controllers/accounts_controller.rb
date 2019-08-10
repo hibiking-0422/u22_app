@@ -2,28 +2,27 @@ class AccountsController < ApplicationController
    before_action :authenticate_user!
 
   def show
-    @user = User.find(params[:id])
+    @scores = User.find(params[:id]).scores
 
-    @scores = @user.scores
+    @total_ans = @scores.where(answer:'○').count
+    @total_total = @scores.count
+    @total_per = ((@total_ans/ @total_total.to_f) * 100).floor
 
-    @scores.each do |score|
-      
-      case score.field
-      when 'テクノロジ系'
-       @tec_count =@tec_count + 1
-      when 'ストラテジ系'
-       @stra_count =@stra_count + 1
-      when 'マネジメント系'
-       @mana_count = @mana_count + 1
-      end
-    end
 
-    total = @scores.count
 
-    @tec_total =@tec_count / total
-    @stra_total = @stra_count / total
-    @mana_total = @mana_count / total
+    @tec_ans = @scores.where(answer:'○').where(field:'テクノロジ系').count
+    @tec_total =  @scores.where(field:'テクノロジ系').count
+    @tec_per = ((@tec_ans / @tec_total.to_f) * 100).floor
+
+    @mana_ans = @scores.where(answer:'○').where(field:'マネジメント系').count
+    @mana_total = @scores.where(field:'マネジメント系').count
+    @mana_per = ((@mana_ans / @mana_total.to_f) * 100).floor
+
+    @stra_ans = @scores.where(answer:'○').where(field:'ストラテジ系').count
+    @stra_total =  @scores.where(field:'ストラテジ系').count
+    @stra_per = ((@stra_ans / @stra_total.to_f) * 100).floor
+
     
-
   end
 end
+

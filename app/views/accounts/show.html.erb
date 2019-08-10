@@ -1,5 +1,6 @@
-<h1>ユーザー一覧</h1>
+<h1>成績一覧</h1>
 
+<% if false %>
 <table>
   <thead>
     <tr>
@@ -20,12 +21,15 @@
         <td><%= score.study_day %></td>
       </tr>
     <% end %>
-
-  <%=@tec_total%>
-  <%=@stra_total%>
-  <%=@mana_total%>
-
-
   </tbody>
 </table>
+<% end %>
+ 
+全体:<%=@total_per%>％ <%=@total_total%>問中<%=@total_ans%>問正解
+<br>
+<p> 
+テクノロジ系:<%=@tec_per%>％ <%=@tec_total%>問中<%=@tec_ans%>問正解<br>
+マネジメント系:<%=@mana_per%>％ <%=@mana_total%>問中<%=@mana_ans%>問正解<br>
+ストラテジ系:<%=@stra_per%>％ <%=@stra_total%>問中<%=@stra_ans%>問正解<br>
+</p>
 
