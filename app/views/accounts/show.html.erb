@@ -27,19 +27,26 @@
  
 全体:<%=@total_per%>％ <%=@total_total%>問中<%=@total_ans%>問正解
 <br>
-<p> 
-テクノロジ系:<%=@tec_per%>％ <%=@tec_total%>問中<%=@tec_ans%>問正解<br>
-マネジメント系:<%=@mana_per%>％ <%=@mana_total%>問中<%=@mana_ans%>問正解<br>
-ストラテジ系:<%=@stra_per%>％ <%=@stra_total%>問中<%=@stra_ans%>問正解<br>
-</p>
+
 
 <br>
 
 
-<%=p @genes%>
-
-<br>
 
 <% @genes.each do |gene|%>
 <%=gene[0]%>:<%=gene[3]%>% <%=gene[2]%>問中<%=gene[1]%>問正解<br>
 <% end %>
+
+<br><br><br>
+
+<% @fin_genes.each do |fin_gene|%>
+<%=fin_gene[0]%>:<%=fin_gene[3]%>% <%=fin_gene[2]%>問中<%=fin_gene[1]%>問正解<br>
+<% end %>
+
+<br><br><br>
+
+<% @questions.each do |question|%>
+<%=question[0].match(/","/).post_match.gsub("\"", '').gsub("\)",'')%>:<%=question[3]%>% <%=question[2]%>問中<%=question[1]%>問正解<br>
+<% end %>
+
+<%= @scores.column_names%>

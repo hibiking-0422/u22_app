@@ -12,26 +12,9 @@ class AccountsController < ApplicationController
 
     
     @genes = Field.sepa(@scores)
-
-
-
-  
-
-
-
-
-    @tec_ans = @scores.where(answer:'○').where(field:'テクノロジ系').count
-    @tec_total =  @scores.where(field:'テクノロジ系').count
-    @tec_per = ((@tec_ans / @tec_total.to_f) * 100).floor
-
-    @mana_ans = @scores.where(answer:'○').where(field:'マネジメント系').count
-    @mana_total = @scores.where(field:'マネジメント系').count
-    @mana_per = ((@mana_ans / @mana_total.to_f) * 100).floor
-
-    @stra_ans = @scores.where(answer:'○').where(field:'ストラテジ系').count
-    @stra_total =  @scores.where(field:'ストラテジ系').count
-    @stra_per = ((@stra_ans / @stra_total.to_f) * 100).floor
-
+    @fin_genes = Field.sepa_fin(@scores)
+    @questions = Field.sepa_que(@scores)
+    
   end
 end
 
