@@ -1,0 +1,59 @@
+commit 1130c97418bb4ddcb18b083d85764f92a5ff0482
+Author: vagrant <vagrant@localhost.localdomain>
+Date:   Mon Aug 12 08:26:29 2019 +0000
+
+    成績表示機能完成
+
+commit 2fe07263e8ba35ec7bc7ddb6522e3db43045ed8c
+Author: vagrant <vagrant@localhost.localdomain>
+Date:   Sat Aug 10 10:28:59 2019 +0000
+
+    genesに悩み中
+
+commit 08c50be37a4c3db799379a33ea05be1d8d46bec6
+Author: vagrant <vagrant@localhost.localdomain>
+Date:   Sat Aug 10 05:10:04 2019 +0000
+
+    成績ジャンル表示完成
+
+commit b03255d6b4ae47e7c75d8b4315dc709b13f69537
+Author: vagrant <vagrant@localhost.localdomain>
+Date:   Fri Aug 9 02:32:16 2019 +0000
+
+    アソシエーション完成
+
+commit 84aae5c729872e85a04a0fb42498ba4cefd54bf3
+Author: vagrant <vagrant@localhost.localdomain>
+Date:   Thu Aug 8 12:14:21 2019 +0000
+
+    基本のcsvインポート機能実装
+
+commit f5d508ef75ec13d3597a5592bc0be90fcf0a818a
+Author: vagrant <vagrant@localhost.localdomain>
+Date:   Thu Aug 8 03:05:36 2019 +0000
+
+    score_association_first
+
+commit d1e575e6a490dd229a35146f10bf2beecd275685
+Author: vagrant <vagrant@localhost.localdomain>
+Date:   Wed Aug 7 09:26:07 2019 +0000
+
+    windows_test
+
+commit 6679ca5ec2382184a8057f9fb6859c0b11e5436d
+Author: vagrant <vagrant@localhost.localdomain>
+Date:   Wed Aug 7 05:23:45 2019 +0000
+
+    login complete
+
+commit 71aab9f4f234077c647795d3cd0a6f573bead3f5
+Author: vagrant <vagrant@localhost.localdomain>
+Date:   Sun Aug 4 14:19:38 2019 +0000
+
+    カレンダーコントロールの作成
+
+commit 64d69adc7a70989474097ac2c133470b98e55406
+Author: vagrant <vagrant@localhost.localdomain>
+Date:   Sun Aug 4 05:47:37 2019 +0000
+
+    first commit
