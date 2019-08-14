@@ -1,36 +1,24 @@
-<script type="text/javascript"><!--
-var now = new Date();
-var year = now.getFullYear();
-var month = now.getMonth() + 1;
-var today = now.getDate();
-now.setDate(1);
-var startDay = now.getDay();
-var monthdays = new Array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
-var dateMax = monthdays[month - 1];
-if (month == 2 &&
-  ((year%4 == 0 && year%100 != 0) || year%400 == 0)) dateMax = 29;
-var days = new Array("日", "月", "火", "水", "木", "金", "土");
-document.write("<table border=1 bgcolor='#ffffff'>\n"
-  + "<tr><th colspan=7 bgcolor='#f5f5dc'>"
-  + year + "年 " + month + "月</th></tr>\n");
-document.write("<tr><th bgcolor='#ffc3ce'>" + days[0] + "</th>");
-for (i = 1; i < 6; i++) document.write("<th>" + days[i] + "</th>");
-document.write("<th bgcolor='#add8e6'>" + days[6] + "</th></tr>\n");
-var col = 0;
-if (startDay > 0) {
-  document.write("<tr>");
-  for ( ; col < startDay; col++) document.write("<td>&nbsp;</td>");
-}
-for (i = 1; i <= dateMax; i++) {
-  if (col == 0) document.write("<tr>");
-  if (i == today) document.write("<td bgcolor='#ffc3ce'>" + i + "</td>");
-  else document.write("<td>" + i + "</td>");
-  if (col == 6) { document.write("</tr>\n"); col = 0; } else col++;
-}
-if (col != 0) {
-  for ( ; col < 7; col++) document.write("<td>&nbsp;</td>");
-  document.write("</tr>\n");
-}
-document.write("</table>\n");
-//-->
-</script>
+<%=@day%>の正答率:<%=@seito_per[2]%>% <%=@seito_per[1]%>問中<%=@seito_per[0]%>問正解<br>
+<%=@yesterday%>の正答率:<%=@yes_seito_per[2]%>%<br><br>
+
+前回よりも<%=@dif%>%<%=@wo%><br><br>
+
+
+分野別の正答率<br><br>
+ストラテジ系    :<%=@stra_per[2]%>% <%=@stra_per[1]%>問中<%=@stra_per[0]%>問正解<br>
+マネジメント系  :<%=@mana_per[2]%>% <%=@mana_per[1]%>問中<%=@mana_per[0]%>問正解<br>
+テクノロジ系    :<%=@tec_per[2]%>% <%=@tec_per[1]%>問中<%=@tec_per[0]%>問正解<br><br>
+<table>
+    <% @calenders.each do |score| %>
+      <tr>
+        <td>id:<%= score.user_id %></td>
+        <td><%= score.study_time %>時間</td>
+        <td><%= score.break_time %>時間</td>
+        <td><%= score.reflection %></td>
+        <td><%= score.created_at.in_time_zone('Tokyo') %></td>
+        <td><%= score.updated_at.in_time_zone('Tokyo') %></td>
+      </tr>
+    <% end %>
+</table>
+<br>
+<%=@date%>

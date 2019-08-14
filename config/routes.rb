@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     collection { post :import }
   end
 
+
   get 'calendars/index'
   get 'calendars/show'
   devise_for :users

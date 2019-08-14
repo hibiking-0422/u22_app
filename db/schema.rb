@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_08_120021) do
+ActiveRecord::Schema.define(version: 2019_08_12_101507) do
+
+  create_table "calenders", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "study_time"
+    t.integer "break_time"
+    t.text "reflection"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "scores", force: :cascade do |t|
     t.integer "user_id"

@@ -1,6 +1,6 @@
 <h1>成績一覧</h1>
 
-<% if false %>
+
 <table>
   <thead>
     <tr>
@@ -23,7 +23,7 @@
     <% end %>
   </tbody>
 </table>
-<% end %>
+
  
 全体:<%=@total_per%>％ <%=@total_total%>問中<%=@total_ans%>問正解
 <br>
@@ -49,4 +49,14 @@
 <%=question[0].match(/","/).post_match.gsub("\"", '').gsub("\)",'')%>:<%=question[3]%>% <%=question[2]%>問中<%=question[1]%>問正解<br>
 <% end %>
 
-<%= @scores.column_names%>
+<br><br><br>
+
+    <% @calenders.each do |calender| %>
+      <tr>
+        <td><%= calender.user_id %></td>
+        <td><%= calender.study_time %></td>
+        <td><%= calender.break_time %></td>
+        <td><%= calender.reflection %></td>
+      </tr>
+      <br>
+    <% end %>

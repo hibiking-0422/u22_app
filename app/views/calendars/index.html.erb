@@ -34,3 +34,14 @@ if (col != 0) {
 document.write("</table>\n");
 //-->
 </script>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<%= form_tag calendar_path(current_user.id), method: :get,multipart: true do %>
+<%= date_field_tag :day%>
+<%= submit_tag "インポート" %>
+<%end%>
