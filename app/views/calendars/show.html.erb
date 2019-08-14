@@ -8,17 +8,45 @@
 ストラテジ系    :<%=@stra_per[2]%>% <%=@stra_per[1]%>問中<%=@stra_per[0]%>問正解<br>
 マネジメント系  :<%=@mana_per[2]%>% <%=@mana_per[1]%>問中<%=@mana_per[0]%>問正解<br>
 テクノロジ系    :<%=@tec_per[2]%>% <%=@tec_per[1]%>問中<%=@tec_per[0]%>問正解<br><br>
+
+
+
+
+
+<%if false%>
 <table>
-    <% @calenders.each do |score| %>
+    <% @calenders.each do |calender| %>
       <tr>
-        <td>id:<%= score.user_id %></td>
-        <td><%= score.study_time %>時間</td>
-        <td><%= score.break_time %>時間</td>
-        <td><%= score.reflection %></td>
-        <td><%= score.created_at.in_time_zone('Tokyo') %></td>
-        <td><%= score.updated_at.in_time_zone('Tokyo') %></td>
+        <td>id:<%= calender.user_id %></td>
+        <td><%= calender.study_time %>時間</td>
+        <td><%= calender.break_time %>時間</td>
+        <td><%= calender.reflection %></td>
+        <td><%= calender.created_at %></td>
+        <td><%= calender.updated_at%></td>
       </tr>
     <% end %>
 </table>
+<% end %>
+
 <br>
-<%=@date%>
+
+勉強時間:<%=@study_time%>時間<br>  
+休憩時間:<%=@break_time%>時間<br><br>
+<% n = 1 %>
+<% @calenders.each do |calender|%>
+    <%= n %>回目
+    <%= calender.reflection%><br>
+    -------------------------------------------<br>
+    <% n += 1%>
+<% end %>
+
+<br>
+得意分野
+<% @su.each do |s|%>
+    :<%=s%> 
+<% end %>
+<br>
+苦手分野
+<% @mu.each do |m|%>
+    :<%=m%> 
+<% end %>

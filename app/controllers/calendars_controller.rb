@@ -33,11 +33,30 @@ class CalendarsController < ApplicationController
 
     @calenders = User.find(params[:id]).calenders.where(created_at: @day.in_time_zone.all_day)
 
-    @date = Time.parse(@day)
+    @study_time = 0
+    @break_time = 0
+    @calenders.each do |calender|
+      @study_time += calender.study_time 
+      @break_time += calender.break_time
+    end
 
-    #@calenders.each do |calender|
-     ## @study_time += calender.study_time
-      #@break_time += calender.break_time
-    #end
+    box = @scores.where(study_day:@day)
+    goods = Field.sepa(box,"fin_field")
+    
+    arry = []
+    @su = []
+    @mu = []
+    goods.each do |good|
+      arry.push(good[3])
+    end
+    goods.each do |good|
+      if good[3] == arry.max
+        @su.push(good[0])
+      end
+      if good[3] == arry.min
+        @mu.push(good[0])
+      end
+    end
+
   end
 end
