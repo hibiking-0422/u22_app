@@ -13,8 +13,23 @@ class CalendarsController < ApplicationController
     end
 
     @day = Field.pra(@day)
-    
-    @yesterday = Field.pra(Time.parse(@day).yesterday.strftime("%Y-%m-%d"))
+
+    @now_day = @day
+    num = 0
+    while num < 1000 do
+      num += 1
+      @now_day = Field.pra(Time.parse(@now_day).yesterday.strftime("%Y-%m-%d"))
+      @scores.each do |score|
+        if score.study_day == @now_day then
+          @yesterday = @now_day
+        end
+      end
+      if @yesterday.present? then
+        break
+      end
+    end
+
+    now_day = Field.pra(Time.parse(@day).yesterday.strftime("%Y-%m-%d"))
 
     @seito_per = Field.deb(@scores,@day,nil)
     @yes_seito_per = Field.deb(@scores,@yesterday,nil)

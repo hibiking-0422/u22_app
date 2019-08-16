@@ -1,8 +1,9 @@
 <%=@day%>の正答率:<%=@seito_per[2]%>% <%=@seito_per[1]%>問中<%=@seito_per[0]%>問正解<br>
+
+<%if @yesterday.present?%>
 <%=@yesterday%>の正答率:<%=@yes_seito_per[2]%>%<br><br>
-
 前回よりも<%=@dif%>%<%=@wo%><br><br>
-
+<% end %>
 
 分野別の正答率<br><br>
 ストラテジ系    :<%=@stra_per[2]%>% <%=@stra_per[1]%>問中<%=@stra_per[0]%>問正解<br>
