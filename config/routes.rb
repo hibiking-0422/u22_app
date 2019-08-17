@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     collection { post :import }
   end
 
-
+  get"scoress/set_content"
   get 'calendars/index'
   get 'calendars/show'
   devise_for :users

@@ -1,62 +1,50 @@
 <h1>成績一覧</h1>
 
-<%if false%>
+<br><br><hr color="green" noshade><br>
+
 <table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>名前</th>
-      <th>年齢</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @scores.each do |score| %>
-      <tr>
-        <td><%= score.user_id %></td>
-        <td><%= score.answer %></td>
-        <td><%= score.field %></td>
-        <td><%= score.fin_field %></td>
-        <td><%= score.question %></td>
-        <td><%= score.study_day %></td>
-      </tr>
-    <% end %>
-  </tbody>
+  <% @genes.each do |gene|%>
+  <tr>
+    <td align="center"><%=gene[0]%></td>
+    <td align="right">　　<span><%=gene[3]%>%</td>
+    <td align="right">　　<%=gene[2]%>問中<%=gene[1]%>問正解<td>
+  </tr>
+<% end %>
 </table>
-<% end %>
- 
-全体:<%=@total_per%>％ <%=@total_total%>問中<%=@total_ans%>問正解
-<br>
 
+<br><br><hr color="green" noshade><br>
 
-<br>
-
-
-
-<% @genes.each do |gene|%>
-<%=gene[0]%>:<%=gene[3]%>% <%=gene[2]%>問中<%=gene[1]%>問正解<br>
-<% end %>
-
-<br><br><br>
-
-<% @fin_genes.each do |fin_gene|%>
-<%=fin_gene[0]%>:<%=fin_gene[3]%>% <%=fin_gene[2]%>問中<%=fin_gene[1]%>問正解<br>
-<% end %>
-
-<br><br><br>
-
-<% @questions.each do |question|%>
-<%=question[0].match(/","/).post_match.gsub("\"", '').gsub("\)",'')%>:<%=question[3]%>% <%=question[2]%>問中<%=question[1]%>問正解<br>
-<% end %>
-
-<br><br><br>
-
-    <% @calenders.each do |calender| %>
-      <tr>
-        <td><%= calender.user_id %></td>
-        <td><%= calender.study_time %></td>
-        <td><%= calender.break_time %></td>
-        <td><%= calender.reflection %></td>
-      </tr>
-      <br>
+<% @fields.each do |field|%>
+<table>
+<th><%=field%></th>
+  <% @fin_genes.each do |fin_gene|%>
+  <tr>
+    <% if field == fin_gene[4]%>
+      <td align="center"><%=fin_gene[0]%></td>
+      <td align="right">　　<%=fin_gene[3]%>%</td>
+      <td align="right">　　<%=fin_gene[2]%>問中<%=fin_gene[1]%>問正解</td>
     <% end %>
+  </tr>
+  <% end %>
+</table>
+<br><br>
+<% end %>
+
+
+<hr color="green" noshade><br><br>
+
+<% @fin_fields.each do |fin_field|%>
+<table>
+<th><%=fin_field%></th>
+  <% @questions.each do |question|%>
+  <tr>
+    <% if fin_field == question[4]%>
+      <td><%=question[0].match(/","/).post_match.gsub("\"", '').gsub("\)",'')%></td>
+      <td align="right">　　<%=question[3]%>%</td>
+      <td align="right">　　<%=question[2]%>問中<%=question[1]%>問正解</td>
+    <% end %>
+  </tr>
+  <% end %>
+</table>
+<br>
+<% end %>

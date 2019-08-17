@@ -18,6 +18,9 @@ class AccountsController < ApplicationController
     @questions = Field.sepa(@scores,"question")
 
     @calenders = Calender.all
+
+    @fields = Field.aka(@scores,"field")
+    @fin_fields = Field.aka(@scores,"fin_field")
   end
 end
 

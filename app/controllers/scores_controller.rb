@@ -32,4 +32,9 @@ class ScoresController < ApplicationController
 
     redirect_to calendar_path(current_user.id)
   end
+
+  def index
+    @time = params[:time]
+  end
+
 end

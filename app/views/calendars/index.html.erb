@@ -1,47 +1,204 @@
-<script type="text/javascript"><!--
-var now = new Date();
-var year = now.getFullYear();
-var month = now.getMonth() + 1;
-var today = now.getDate();
-now.setDate(1);
-var startDay = now.getDay();
-var monthdays = new Array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
-var dateMax = monthdays[month - 1];
-if (month == 2 &&
-  ((year%4 == 0 && year%100 != 0) || year%400 == 0)) dateMax = 29;
-var days = new Array("日", "月", "火", "水", "木", "金", "土");
-document.write("<table border=1 bgcolor='#ffffff'>\n"
-  + "<tr><th colspan=7 bgcolor='#f5f5dc'>"
-  + year + "年 " + month + "月</th></tr>\n");
-document.write("<tr><th bgcolor='#ffc3ce'>" + days[0] + "</th>");
-for (i = 1; i < 6; i++) document.write("<th>" + days[i] + "</th>");
-document.write("<th bgcolor='#add8e6'>" + days[6] + "</th></tr>\n");
-var col = 0;
-if (startDay > 0) {
-  document.write("<tr>");
-  for ( ; col < startDay; col++) document.write("<td>&nbsp;</td>");
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>タイマー</title>
+        
+        <script src="jquery-1.10.2.min.js"></script>
+        <script src="jquery-ui-1.10.3.custom.min.js"></script>
+        
+        <style>
+            div.taimer{
+     height: 150px;              /* 高さ指定 */
+    width: 150px;               /* 幅指定 */
+    background-color: #fff;     /* 背景色指定 */
+    margin:  30px;              /* 周りの余白指定 */
+    float: left;
 }
-for (i = 1; i <= dateMax; i++) {
-  if (col == 0) document.write("<tr>");
-  if (i == today) document.write("<td bgcolor='#ffc3ce'>" + i + "</td>");
-  else document.write("<td>" + i + "</td>");
-  if (col == 6) { document.write("</tr>\n"); col = 0; } else col++;
+
+div.center{
+      height: 150px;              /* 高さ指定 */
+    width: 150px;               /* 幅指定 */
+    background-color: #fff;     /* 背景色指定 */
+    margin:  30px;              /* 周りの余白指定 */
+    float: none;
 }
-if (col != 0) {
-  for ( ; col < 7; col++) document.write("<td>&nbsp;</td>");
-  document.write("</tr>\n");
-}
-document.write("</table>\n");
-//-->
-</script>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+        </style>
+
+        
+    </head>
+    <body>
+
+       <center>
+        <div class = "taimer">   
+        <p>勉強時間</p>   
+        <span id = "study_h">00</span><span>:</span><span id = "study_m">00</span><span>:</span><span id = "study_s">00</span>
+        </div>
+        <div class = "taimer">   
+        <p>休憩時間</p>
+        <span id = "rest_h">00</span><span>:</span><span id = "rest_m">00</span><span>:</span><span id = "rest_s">00</span><br>
+        </div>
+           <div ><button id = "start" disabled="disabled">スタート</button> <button id = "rest" disabled="disabled">休憩</button><button id = "stop">終了</button></div>
+        </center>
+
+    </body>
+    <script type="text/javascript">
+        
+//タイマーのfunction
+$(function(){
+  
+    var sec = 0;
+    var min = 0;
+    var hour = 0;
+    
+    var st,rt;
+    var study_time = 0;
+    var rest_time = 0;
+    var ck = 0;
+    
+     $('#start').prop('disabled', false);
+         $('#rest').prop('disabled', false);
+    
+     //スタートボタンクリック
+    $('#start').on('click',function(){
+         ck = 1;
+         $('#start').prop('disabled', true);
+         $('#rest').prop('disabled', false);
+        clearInterval(rt); //rtのループ中止
+      //  rest_time = sec + min*100 +hour*10000; 秒でまとめるのに変更
+          rest_time = sec + min*60 +hour *360;
+        $('#otamesi').html(rest_time);
+        
+       
+        if(study_time == 0){
+            sec = 0;min =0; hour = 0;
+        }
+        
+        if(study_time > 0){
+            sec = study_time % 60;
+            $('#s').html(sec);
+             hour = Math.floor(study_time /360);
+            $('#h').html(hour);
+            min = Math.floor( (study_time -hour*360) /60);
+            $('#m').html(min);
+           
+        }
+        
+        
+      
+        //タイマーを起動させる
+        st = setInterval(function(){
+            $('#study_h').html(('0' + hour).slice(-2));
+            $('#study_m').html(('0' + min).slice(-2));
+            $('#study_s').html(('0' + sec).slice(-2));
+            
+            sec++;
+            if(sec == 60){
+                sec = 0;
+                min++;
+            };
+            if(min == 60){
+                min = 0;
+                hour++;
+            };    
+            
+        },1000);
+        
+        
+    });
+    
+  
+    
+        //休憩ボタン
+    $('#rest').on('click',function(){
+         ck = 2;
+         $('#start').prop('disabled', false);
+         $('#rest').prop('disabled', true);
+        clearInterval(st);
+        study_time = sec + min * 60 + hour * 360;
+        $('#otamesi').html(study_time);
+        
+        
+        if(rest_time == 0){
+            sec = 0;min =0; hour = 0;
+        }else{
+             sec = rest_time_time % 60;
+            $('#s').html(sec);
+             hour = Math.floor(rest_time_time /360);
+            $('#h').html(hour);
+            min = Math.floor( (rest_time -hour*360) /60);
+            $('#m').html(min);
+        }
+        
+        
+        //タイマーを起動
+        rt = setInterval(function(){
+            $('#rest_h').html(('0' + hour).slice(-2));
+            $('#rest_m').html(('0' + min).slice(-2));
+            $('#rest_s').html(('0' + sec).slice(-2));
+            
+            sec++;
+            if(sec == 60){
+                sec = 0;
+                min++;
+            };
+            if(min == 60){
+                min = 0;
+                hour++;
+            };    
+           
+        },1000);
+        
+        
+       
+        
+    });
+    
+    //終了ボタン
+    $('#stop').on('click',function(){
+      //ページ移動の処理 たぶんrailsでやる
+        clearInterval(st); clearInterval(rt); //どっちも停止
+      //データベースに保存する処理が必要   
+    
+       if(ck == 0){//何もせずに終了した場合
+           study_time = rest_time =0;
+       }else if(ck == 1){//勉強中
+           study_time = sec + min * 60 + hour * 360;
+       }else if(ck == 2){
+           rest_time = sec + min * 60 + hour * 360;
+       }
+         $.ajax({
+         url: '/calenders/index',  
+
+        type: 'GET',
+
+        dataType: 'html',
+
+        async: true,
+
+        data: {
+          time: study_time
+        },
+
+          });
+        
+        //sutudy_timeが勉強時間（秒単位） rest_timeが休憩時間 この時間を保存すればok
+    
+    });
+    
+    
+    
+   
+});
+    </script>
+</html>
+
 
 <%= form_tag calendar_path(current_user.id), method: :get,multipart: true do %>
 <%= date_field_tag :day%>
 <%= submit_tag "インポート" %>
 <%end%>
+
+<br><br><br>
+<%=@test%>できた！

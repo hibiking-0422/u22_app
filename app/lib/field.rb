@@ -11,9 +11,18 @@ class Field
             arry[2] = scores.where(column => arry[0]).size
             arry[3] = ((arry[1] / arry[2].to_f) * 100).floor
 
+            scores.each do |score|
+                if score.fin_field == n then
+                    arry[4] = score.field
+                    break
+                end
+                if score.question == n then
+                    arry[4] = score.fin_field
+                    break
+                end
+            end
             models.push(arry)
         end
-
         return models
     end    
 
@@ -49,5 +58,15 @@ class Field
           seito.push(((seito[0] / seito[1].to_f) * 100).floor)
         end
         return seito
+    end
+
+    def self.aka(scores,column)
+        fields =  scores.pluck(column).uniq
+
+        as = []
+        fields.each do |field|
+            as.push(field)
+        end
+        return as
     end
 end

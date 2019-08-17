@@ -1,8 +1,7 @@
 class CalendarsController < ApplicationController
   def index
-    
+    @test = params[:study_time]
   end
-
   def show
     @scores = User.find(params[:id]).scores
 
