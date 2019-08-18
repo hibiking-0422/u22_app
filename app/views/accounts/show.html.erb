@@ -14,15 +14,15 @@
 
 <br><br><hr color="green" noshade><br>
 
-<% @fields.each do |field|%>
+<% @fields.each do |field|%><!-- テクノロジ系・ストラテジ系・マネジメント系の順に表示-->
 <table>
-<th><%=field%></th>
+<th><%=field%></th><!-- 分類名表示-->
   <% @fin_genes.each do |fin_gene|%>
   <tr>
     <% if field == fin_gene[4]%>
-      <td align="center"><%=fin_gene[0]%></td>
-      <td align="right">　　<%=fin_gene[3]%>%</td>
-      <td align="right">　　<%=fin_gene[2]%>問中<%=fin_gene[1]%>問正解</td>
+      <td align="center"><%=fin_gene[0]%></td><!--小分類-->
+      <td align="right">　　<%=fin_gene[3]%>%</td><!--正答率-->    
+      <td align="right">　　<%=fin_gene[2]%>問中<%=fin_gene[1]%>問正解</td><!--正解した数-->
     <% end %>
   </tr>
   <% end %>
@@ -35,13 +35,13 @@
 
 <% @fin_fields.each do |fin_field|%>
 <table>
-<th><%=fin_field%></th>
+<th><%=fin_field%></th><!-- 分類名表示-->
   <% @questions.each do |question|%>
   <tr>
-    <% if fin_field == question[4]%>
-      <td><%=question[0].match(/","/).post_match.gsub("\"", '').gsub("\)",'')%></td>
-      <td align="right">　　<%=question[3]%>%</td>
-      <td align="right">　　<%=question[2]%>問中<%=question[1]%>問正解</td>
+    <% if fin_field == question[4]%><!---->
+      <td><%=question[0].match(/","/).post_match.gsub("\"", '').gsub("\)",'')%></td><!--問題名-->
+      <td align="right">　　<%=question[3]%>%</td><!--正答率-->
+      <td align="right">　　<%=question[2]%>問中<%=question[1]%>問正解</td><>
     <% end %>
   </tr>
   <% end %>

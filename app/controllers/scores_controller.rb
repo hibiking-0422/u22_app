@@ -34,7 +34,7 @@ class ScoresController < ApplicationController
   end
 
   def index
-    @time = params[:time]
+        @time = params[:time]
   end
 
 end
