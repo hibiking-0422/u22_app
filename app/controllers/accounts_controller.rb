@@ -21,6 +21,8 @@ class AccountsController < ApplicationController
 
     @fields = Field.aka(@scores,"field")
     @fin_fields = Field.aka(@scores,"fin_field")
+
+    @test = "test"
   end
 end
 
