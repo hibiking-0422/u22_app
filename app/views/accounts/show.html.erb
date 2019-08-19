@@ -1,56 +1,93 @@
+<head>
+ <script src="jquery-1.10.2.min.js"></script>
+ <script src="jquery-ui-1.10.3.custom.min.js"></script>
+</head>
+<style type = "text/css">
+#texbox{
+
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    border: double 5px #000000;
+    
+    width: 600px;
+    text-align: center;
+}
+
+</style>
+<center>
 <h1>成績一覧</h1>
 
-<br><br><hr color="green" noshade><br>
-
 <table>
-  <% @genes.each do |gene|%>
-  <tr>
-    <td align="center"><%=gene[0]%></td>
-    <td align="right">　　<span><%=gene[3]%>%</td>
-    <td align="right">　　<%=gene[2]%>問中<%=gene[1]%>問正解<td>
-  </tr>
+ <% @genes.each do |gene|%>
+ <button id =  "<%=gene[0] + '1'%>">
+   <%=gene[0]%><br>
+   <span><%=gene[3]%>%<br></span>
+   <%=gene[2]%>問中<%=gene[1]%>問正解
+ </button>
 <% end %>
 </table>
 
-<br><br><hr color="green" noshade><br>
-
+<div id = "texbox">
 <% @fields.each do |field|%><!-- テクノロジ系・ストラテジ系・マネジメント系の順に表示-->
-<table>
+<table id = "<%=field%>">
 <th><%=field%></th><!-- 分類名表示-->
-  <% @fin_genes.each do |fin_gene|%>
-  <tr id =  " <% @test %>">
-    <% if field == fin_gene[4]%>
-      <td align="center"><%=fin_gene[0]%></td><!--小分類-->
-      <td align="right">　　<%=fin_gene[3]%>%</td><!--正答率-->    
-      <td align="right">　　<%=fin_gene[2]%>問中<%=fin_gene[1]%>問正解</td><!--正解した数-->
-    <% end %>
-  </tr>
-  <% end %>
+ <% @fin_genes.each do |fin_gene|%>
+ <tr id = "<%=fin_gene[0]+'1'%>">
+   <% if field == fin_gene[4]%>
+     <td align="center"><%=fin_gene[0]%></td><!--小分類-->
+     <td align="right">　　<%=fin_gene[3]%>%</td><!--正答率-->
+     <td align="right">　　<%=fin_gene[2]%>問中<%=fin_gene[1]%>問正解</td><!--正解した数-->
+   <% end %>
+ </tr>
+ <% end %>
 </table>
-<br><br>
+
 <% end %>
-
-
-<hr color="green" noshade><br><br>
 
 <% @fin_fields.each do |fin_field|%>
-<table>
+<table id = "<%=fin_field%>">
 <th><%=fin_field%></th><!-- 分類名表示-->
-  <% @questions.each do |question|%>
-  <tr>
-    <% if fin_field == question[4]%><!---->
-      <td><%=question[0].match(/","/).post_match.gsub("\"", '').gsub("\)",'')%></td><!--問題名-->
-      <td align="right">　　<%=question[3]%>%</td><!--正答率-->
-      <td align="right">　　<%=question[2]%>問中<%=question[1]%>問正解</td>
-    <% end %>
-  </tr>
-  <% end %>
+ <% @questions.each do |question|%>
+ <tr class = "<%=question%>">
+   <% if fin_field == question[4]%><!---->
+     <td><%=question[0].match(/","/).post_match.gsub("\"", '').gsub("\)",'')%></td><!--問題名-->
+     <td align="right">　　<%=question[3]%>%</td><!--正答率-->
+     <td align="right">　　<%=question[2]%>問中<%=question[1]%>問正解</td>
+   <% end %>
+ </tr>
+ <% end %>
 </table>
-<br>
 <% end %>
+</div>
+</center>
 
 <script type="text/javascript">
-    $(function(){
-      $('#test').css({'background-color':'#98fb98'});
-    })
+   $(function(){　
+   
+     var array = ['#テクノロジ系'/*0*/,'#システム構成要素','#データベース',　'#アルゴリズムとプログラミング',　'#ソフトウェア'　,'#セキュリティ'/*5*/,
+                  '#ハードウェア'/*6*/,　'#ヒューマンインタフェース',　'#ネットワーク'　,'#コンピュータ構成要素',　'#システム開発技術','#基礎理論',/*11*/
+                  '#ストラテジ系'/*12*/,'#法務',　'#経営戦略マネジメント'　,'#企業活動','#システム企画','#ビジネスインダストリ'/*17*/,
+                  '#マネジメント系'/*18*/,'#サービスマネジメント',　'#プロジェクトマネジメント'/*20*/
+                 ];
+
+    $.each(array, function(i, value) {
+        $(value).hide();
+    });
+    $('#texbox').hide();
+
+      $.each(array,function(i,value) {
+
+          $(value+'1').on('click',function() {
+             
+            $.each(array,function(j,temp) {
+              if(j == i){
+                $(temp).show();
+                $('#texbox').show();
+              }else{
+                $(temp).hide();
+              }
+            });            
+          });
+      });
+   });
 </script>
