@@ -1,10 +1,5 @@
 class CalendarsController < ApplicationController
-  def index
-    @time = params[:time]
-    if @time.present? then
-      redirect_to account_path(current_user.id)
-    end
-  end
+
   def show
     @scores = User.find(params[:id]).scores
 
