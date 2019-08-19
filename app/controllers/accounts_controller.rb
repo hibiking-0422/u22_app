@@ -1,7 +1,11 @@
 class AccountsController < ApplicationController
    before_action :authenticate_user!
+  def index
 
+  end
   def show
+    @time = params[:id]
+
     @scores = User.find(params[:id]).scores
 
     @ans = "answer"

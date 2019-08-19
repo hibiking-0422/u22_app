@@ -39,7 +39,7 @@ div.center{
         <p>休憩時間</p>
         <span id = "rest_h">00</span><span>:</span><span id = "rest_m">00</span><span>:</span><span id = "rest_s">00</span><br>
         </div>
-           <div ><button id = "start" disabled="disabled">スタート</button> <button id = "rest" disabled="disabled">休憩</button>　<button id = "stop">終了</button></div>
+           <div ><button id = "start" disabled="disabled">スタート</button> <button id = "rest" disabled="disabled">休憩</button>　<button id = "stop"><%=link_to "終了",timer_path(current_user.id)%></button></div>
         </center>
 
     </body>
@@ -169,7 +169,7 @@ $(function(){
            rest_time = sec + min * 60 + hour * 360;
        }
          $.ajax({
-         url: ' /calendars',  
+         url: '/timers',  
 
         type: 'GET',
 
