@@ -43,6 +43,18 @@ class CalendarsController < ApplicationController
     @mana_per = Field.deb(@scores,@day,"マネジメント系")
     @tec_per = Field.deb(@scores,@day,"テクノロジ系")
 
+    gon.stra_per = @stra_per[2]
+    gon.mana_per = @mana_per[2]
+    gon.tec_per = @tec_per[2]
+
+    @yes_stra_per = Field.deb(@scores,@yesterday,"ストラテジ系")
+    @yes_mana_per = Field.deb(@scores,@yesterday,"マネジメント系")
+    @yes_tec_per = Field.deb(@scores,@yesterday,"テクノロジ系")
+
+    gon.yes_stra_per = @yes_stra_per[2]
+    gon.yes_mana_per = @yes_mana_per[2]
+    gon.yes_tec_per = @yes_tec_per[2]
+
     @calenders = User.find(params[:id]).calenders.where(created_at: @day.in_time_zone.all_day)
 
     @study_time = 0
