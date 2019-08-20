@@ -17,9 +17,9 @@
         <nav>
         <% if user_signed_in? %>
             <%= link_to 'カレンダー', calendars_path %>
-            <%= link_to '勉強する', calendar_path(current_user.id) %>
             <%= link_to '勉強する', timers_path, :onclick=>"window.open(this.href,'hoge', 'height=400, width=800');return false;" %>
             <%= link_to '正答率', account_path(current_user.id) %>
+            <%= link_to '復習', score_path(current_user.id) %>
             <%= link_to 'アカウント編集', edit_user_registration_path %>
             <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
             <%= current_user.id%>

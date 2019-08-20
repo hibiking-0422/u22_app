@@ -1,0 +1,14 @@
+<h1>今日はこの問題を復習しよう！</h1>
+
+今日：<%=@day%><br>
+昨日：<%=@yesterday%><br>
+
+<br>
+<table>
+<% @scores.each do |score|%>
+<tr>
+    <td><%=score.study_day%></td>
+    <td><%=score.question.match(/","/).post_match.gsub("\"", '').gsub("\)",'')%></td>
+</tr>
+<% end %>
+</table>
