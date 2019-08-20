@@ -65,3 +65,4 @@ gem 'devise'
 gem 'jquery-rails'
 
 gem 'roo'
+gem "gon"

@@ -22,8 +22,6 @@
 
 
 
-
-
 <%if false%>
 <table>
     <% @calenders.each do |calender| %>
@@ -69,12 +67,12 @@ var data = {
     labels: ["テクノロジ系", "ストラテジ系", "マネジメント系"],
     datasets: [{
         label: '前回',
-        data: [60, 40, 20],/*ここに前回のデータを入れる*/
+        data: [gon.yes_tec_per, gon.yes_stra_per , gon.yes_mana_per],/*ここに前回のデータを入れる*/
         backgroundColor: 'rgba(255, 0, 0, 1)'
     },
     {
         label: '今回',
-        data: [20, 80, 60],/*今回のデータ（正答率を入れる）今入れてあるのはサンプル*/
+        data: [gon.tec_per, gon.stra_per, gon.mana_per],/*今回のデータ（正答率を入れる）今入れてあるのはサンプル*/
         backgroundColor: 'rgba(0, 0, 255, 1)'
         
     }]
