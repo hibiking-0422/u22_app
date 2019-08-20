@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
- resources :calendars,:scores,:accounts,:timers
+ resources :calendars,:scores,:accounts,:timers,:accesses
  
   resources :scores do
     collection { post :import }
