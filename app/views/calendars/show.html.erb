@@ -1,3 +1,13 @@
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+</head>
+
+<style>
+#ex_chart {max-width:640px;max-height:480px;}
+</style>
+
+<canvas id="ex_chart"></canvas>
+
 <%=@day%>の正答率:<%=@seito_per[2]%>% <%=@seito_per[1]%>問中<%=@seito_per[0]%>問正解<br>
 
 <%if @yesterday.present?%>
@@ -51,3 +61,57 @@
 <% @mu.each do |m|%>
     :<%=m%> 
 <% end %>
+
+<script>
+var ctx = document.getElementById('ex_chart');
+
+var data = {
+    labels: ["テクノロジ系", "ストラテジ系", "マネジメント系"],
+    datasets: [{
+        label: '前回',
+        data: [60, 40, 20],/*ここに前回のデータを入れる*/
+        backgroundColor: 'rgba(255, 0, 0, 1)'
+    },
+    {
+        label: '今回',
+        data: [20, 80, 60],/*今回のデータ（正答率を入れる）今入れてあるのはサンプル*/
+        backgroundColor: 'rgba(0, 0, 255, 1)'
+        
+    }]
+};
+
+var options = {
+    scales: {
+        xAxes: [{
+            scaleLabel: {
+                display: true,
+                labelString: '正答率比較'
+            }
+        }],
+        yAxes: [{
+            ticks: {
+                min: 0,
+                
+                userCallback: function(tick) {
+                     
+                    return tick.toString() + '％';
+                }
+            },
+            scaleLabel: {
+                display: true,
+                labelString: ''
+            }
+        }]
+    },
+    title: {
+        display: true,
+        text: '正答率比較'
+    }
+};
+
+var ex_chart = new Chart(ctx, {
+    type: 'bar',
+    data: data,
+    options: options
+});
+</script>
