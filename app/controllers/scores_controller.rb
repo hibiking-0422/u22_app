@@ -30,7 +30,8 @@ class ScoresController < ApplicationController
     @calender.user_id = current_user.id
     @calender.save
 
-    redirect_to calendar_path(current_user.id)
+    #redirect_to calendar_path(current_user.id)
+     render "timers/close", layout: false
   end
 
   def index

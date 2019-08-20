@@ -1,10 +1,13 @@
 class TimersController < ApplicationController
     def index
-        session[:time] = params[:time]
+        render layout: false
     end
 
-    def show
-        @time = session[:time]
+    def new
+        render layout: false
     end
 
+    def close
+        
+    end
 end

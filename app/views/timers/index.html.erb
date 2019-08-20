@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>タイマー</title>
+        
+        <script src="jquery-1.10.2.min.js"></script>
+        <script src="jquery-ui-1.10.3.custom.min.js"></script>
+        
+        <style>
+            div.taimer{
+     height: 150px;              /* 高さ指定 */
+    width: 150px;               /* 幅指定 */
+    background-color: #fff;     /* 背景色指定 */
+    margin:  30px;              /* 周りの余白指定 */
+    float: left;
+}
+
+div.center{
+      height: 150px;              /* 高さ指定 */
+    width: 150px;               /* 幅指定 */
+    background-color: #fff;     /* 背景色指定 */
+    margin:  30px;              /* 周りの余白指定 */
+    float: none;
+}
+        </style>
+
+        
+    </head>
+    <body>
+
+       <center>
+        <div class = "taimer">   
+        <p>勉強時間</p>   
+        <span id = "study_h">00</span><span>:</span><span id = "study_m">00</span><span>:</span><span id = "study_s">00</span>
+        </div>
+        <div class = "taimer">   
+        <p>休憩時間</p>
+        <span id = "rest_h">00</span><span>:</span><span id = "rest_m">00</span><span>:</span><span id = "rest_s">00</span><br>
+        </div>
+        <br><br><br><br><br><br><br><br><br>
+           <div ><button id = "start" disabled="disabled">スタート</button>　<button id = "rest" disabled="disabled">休憩</button>　<button><%=link_to "終了", new_timer_path %></button>　<button  id = "stop">保存</button></div>
+        </center>
+
+    </body>
+    <script type="text/javascript">
+        
+//タイマーのfunction
+$(function(){
+  
+    var sec = 0;
+    var min = 0;
+    var hour = 0;
+    
+    var st,rt;
+    var study_time = 0;
+    var rest_time = 0;
+    var ck = 0;
+    var cc = 0;
+    
+     $('#start').prop('disabled', false);
+         $('#rest').prop('disabled', false);
+    
+     //スタートボタンクリック
+    $('#start').on('click',function(){
+         ck = 1;
+         cc++;
+         $('#start').prop('disabled', true);
+         $('#rest').prop('disabled', false);
+        clearInterval(rt); //rtのループ中止
+      //  rest_time = sec + min*100 +hour*10000; 秒でまとめるのに変更
+          rest_time = sec + min*60 +hour *360;
+          if(cc == 1){
+          window.open('https://www.ap-siken.com/apkakomon.php',"応用情報","resizable=yes,scrollbars=yes");
+          }
+        $('#otamesi').html(rest_time);
+        
+       
+        if(study_time == 0){
+            sec = 0;min =0; hour = 0;
+        }
+        
+        if(study_time > 0){
+            sec = study_time % 60;
+            $('#s').html(sec);
+             hour = Math.floor(study_time /360);
+            $('#h').html(hour);
+            min = Math.floor( (study_time -hour*360) /60);
+            $('#m').html(min);
+           
+        }
+        
+        
+      
+        //タイマーを起動させる
+        st = setInterval(function(){
+            $('#study_h').html(('0' + hour).slice(-2));
+            $('#study_m').html(('0' + min).slice(-2));
+            $('#study_s').html(('0' + sec).slice(-2));
+            
+            sec++;
+            if(sec == 60){
+                sec = 0;
+                min++;
+            };
+            if(min == 60){
+                min = 0;
+                hour++;
+            };    
+            
+        },1000);
+        
+        
+    });
+    
+  
+    
+        //休憩ボタン
+    $('#rest').on('click',function(){
+         ck = 2;
+         $('#start').prop('disabled', false);
+         $('#rest').prop('disabled', true);
+        clearInterval(st);
+        study_time = sec + min * 60 + hour * 360;
+        $('#otamesi').html(study_time);
+        
+        
+        if(rest_time == 0){
+            sec = 0;min =0; hour = 0;
+        }else{
+             sec = rest_time_time % 60;
+            $('#s').html(sec);
+             hour = Math.floor(rest_time_time /360);
+            $('#h').html(hour);
+            min = Math.floor( (rest_time -hour*360) /60);
+            $('#m').html(min);
+        }
+        
+        
+        //タイマーを起動
+        rt = setInterval(function(){
+            $('#rest_h').html(('0' + hour).slice(-2));
+            $('#rest_m').html(('0' + min).slice(-2));
+            $('#rest_s').html(('0' + sec).slice(-2));
+            
+            sec++;
+            if(sec == 60){
+                sec = 0;
+                min++;
+            };
+            if(min == 60){
+                min = 0;
+                hour++;
+            };    
+           
+        },1000);
+        
+        
+       
+        
+    });
+    
+    //終了ボタン
+    $('#stop').on('click',function(){
+      //ページ移動の処理 たぶんrailsでやる
+        clearInterval(st); clearInterval(rt); //どっちも停止
+      //データベースに保存する処理が必要   
+    
+       if(ck == 0){//何もせずに終了した場合
+           study_time = rest_time =0;
+       }else if(ck == 1){//勉強中
+           study_time = sec + min * 60 + hour * 360;
+       }else if(ck == 2){
+           rest_time = sec + min * 60 + hour * 360;
+       }
+         $.ajax({
+         url: '/accesses',  
+
+        type: 'GET',
+
+        dataType: 'html',
+
+        async: true,
+
+        data: {
+          study_time:   study_time,
+          break_time:    rest_time
+        },
+
+          });
+        
+        //sutudy_timeが勉強時間（秒単位） rest_timeが休憩時間 この時間を保存すればok
+    
+    });
+    
+    
+    
+   
+});
+    </script>
+</html>

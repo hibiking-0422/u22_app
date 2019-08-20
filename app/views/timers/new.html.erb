@@ -1,8 +1,10 @@
+<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+<%=session[:study_time]%><br>
+<%=session[:break_time]%><br>
 <%= form_tag import_scores_path, multipart: true do %>
-    <%=label_tag :勉強時間%><br>
-    <%= number_field_tag :study_time%><br>
-    <%=label_tag :休憩時間%><br>
-    <%= number_field_tag :break_time%><br>
+   <%=hidden_field_tag :study_time,session[:study_time].to_i%>
+   <%=hidden_field_tag :break_time,session[:break_time].to_i%>
     <%=label_tag :反省%><br>
     <%= text_area_tag :reflection%><br>
     <%=label_tag :成績保存%><br>
