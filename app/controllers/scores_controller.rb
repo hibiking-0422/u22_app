@@ -39,9 +39,9 @@ class ScoresController < ApplicationController
   end
 
   def show
-    @day = Field.pra(Time.now.in_time_zone.strftime("%Y-%m-%d"))
+    #@day = Field.pra(Time.now.in_time_zone.strftime("%Y-%m-%d"))
     @yesterday = Field.pra(Time.now.in_time_zone.yesterday.strftime("%Y-%m-%d"))
-    @scores = User.find(params[:id]).scores.where(study_day:@day)
+    @scores = User.find(params[:id]).scores.where(study_day:@yesterday)
    
 
 
