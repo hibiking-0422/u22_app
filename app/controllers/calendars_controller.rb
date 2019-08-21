@@ -64,6 +64,14 @@ class CalendarsController < ApplicationController
       @break_time += calender.break_time
     end
 
+    @study_hour = (@study_time / 3600.0).floor
+    @study_minite = ((@study_time / 60.0) % 60).floor
+    @study_second  =  (@study_time % 60.0).floor
+
+    @break_hour = (@break_time / 3600.0).floor
+    @break_minite = ((@break_time / 60.0) % 60).floor
+    @break_second  =  (@break_time % 60.0).floor
+
     box = @scores.where(study_day:@day)
     goods = Field.sepa(box,"fin_field")
     

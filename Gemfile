@@ -66,3 +66,6 @@ gem 'jquery-rails'
 
 gem 'roo'
 gem "gon"
+
+
+gem 'jquery-turbolinks'
