@@ -20,10 +20,9 @@
             <%= link_to '勉強する', timers_path, :onclick=>"window.open(this.href,'hoge', 'height=400, width=800');return false;" %>
             <%= link_to '正答率', account_path(current_user.id) %>
             <%= link_to '復習', score_path(current_user.id) %>
-            <%= link_to 'アカウント編集', edit_user_registration_path %>
-            <%= link_to 'アカウント編集', mypage_path(current_user.id) %>
+            <%= link_to 'マイページ', mypage_path(current_user.id) %>
             <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-            <%= current_user.id%>
+            <%= current_user.name%>
         <% else %>
             <%= link_to '新規登録', new_user_registration_path %>
             <%= link_to 'ログイン', new_user_session_path %>

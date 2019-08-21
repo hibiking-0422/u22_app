@@ -58,7 +58,6 @@ class ScoresController < ApplicationController
          @questions.push(yes)
       end
     end
-   
 
 
 
