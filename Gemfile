@@ -66,3 +66,5 @@ gem 'jquery-rails'
 
 gem 'roo'
 gem "gon"
+
+gem 'bootstrap', '~> 4.1.1'
