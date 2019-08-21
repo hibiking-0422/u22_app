@@ -41,7 +41,23 @@ class ScoresController < ApplicationController
   def show
     #@day = Field.pra(Time.now.in_time_zone.strftime("%Y-%m-%d"))
     @yesterday = Field.pra(Time.now.in_time_zone.yesterday.strftime("%Y-%m-%d"))
-    @scores = User.find(params[:id]).scores.where(study_day:@yesterday)
+    @dby = Field.pra(Time.now.in_time_zone.yesterday.yesterday.strftime("%Y-%m-%d"))
+    @yes_scores = User.find(params[:id]).scores.where(study_day:@yesterday)
+    @dby_scores = User.find(params[:id]).scores.where(study_day:@dby)
+
+    @questions = []
+    @yes_scores.each do |yes|
+      n = 0
+       @dby_scores.each do |dby|
+          if yes.question == dby.question then
+              n = 1
+              break
+          end
+       end
+      if n == 0 then
+         @questions.push(yes)
+      end
+    end
    
 
 
