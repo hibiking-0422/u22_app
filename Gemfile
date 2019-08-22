@@ -63,10 +63,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 gem 'jquery-rails'
-gem 'bootstrap', '~> 4.1.1
 gem 'roo'
 gem "gon"
-
-
 gem 'jquery-turbolinks'
-
+gem "nokogiri", ">= 1.10.4"
