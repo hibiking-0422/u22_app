@@ -69,3 +69,4 @@ gem "gon"
 
 
 gem 'jquery-turbolinks'
+gem "nokogiri", ">= 1.10.4"
