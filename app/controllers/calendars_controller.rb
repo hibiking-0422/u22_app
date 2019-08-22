@@ -4,7 +4,7 @@ class CalendarsController < ApplicationController
     @scores = User.find(params[:id]).scores
 
     if params[:day].nil? then
-      @day = Time.now.strftime("%Y-%m-%d")
+      @day = Time.now.in_time_zone.strftime("%Y-%m-%d")
     else
       @day = params[:day]
     end
@@ -15,7 +15,7 @@ class CalendarsController < ApplicationController
     num = 0
     while num < 1000 do
       num += 1
-      @now_day = Field.pra(Time.parse(@now_day).yesterday.strftime("%Y-%m-%d"))
+      @now_day = Field.pra(Time.parse(@now_day).in_time_zone.yesterday.strftime("%Y-%m-%d"))
       @scores.each do |score|
         if score.study_day == @now_day then
           @yesterday = @now_day
@@ -63,6 +63,14 @@ class CalendarsController < ApplicationController
       @study_time += calender.study_time 
       @break_time += calender.break_time
     end
+
+    @study_hour = (@study_time / 3600.0).floor
+    @study_minite = ((@study_time / 60.0) % 60).floor
+    @study_second  =  (@study_time % 60.0).floor
+
+    @break_hour = (@break_time / 3600.0).floor
+    @break_minite = ((@break_time / 60.0) % 60).floor
+    @break_second  =  (@break_time % 60.0).floor
 
     box = @scores.where(study_day:@day)
     goods = Field.sepa(box,"fin_field")

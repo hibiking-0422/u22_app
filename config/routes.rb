@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
- resources :calendars,:scores,:accounts,:timers,:accesses
+  get 'mypages/show'
+ resources :calendars,:scores,:accounts,:timers,:accesses,:mypages
  
   resources :scores do
     collection { post :import }
