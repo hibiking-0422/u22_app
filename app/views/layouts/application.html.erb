@@ -10,23 +10,64 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= include_gon %>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   </head>
+  <style><!--css-->
+    body{
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    ul.nav {
+　　    overflow:hidden;
+　　    list-style-type: none;
+　　    margin: 0 auto;
+　　    z-index: 20;
+    }
+ 
+    ul.nav  li {
+      display: inline-block;
+      padding: 30px 20px 10px 20px;
+    }
+
+    .topNavi{
+      height: 50px;
+      text-align: right;
+      background-color: #0f9;
+      color: #fff;
+    }
+    
+    div.topNavi{
+      text-align: left;
+      
+    }
+    .navbar{
+      background: #CCCCCC;
+    }
+
+  </style>
  
   <body>
-    <header>
-        <nav>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <a class="navbar-brand" href="#">LOGO</a>
+        <ul class="nav">  
         <% if user_signed_in? %>
-            <%= link_to 'カレンダー', calendars_path %>
-            <%= link_to '勉強する', timers_path, :onclick=>"window.open(this.href,'hoge', 'height=400, width=800');return false;" %>
-            <%= link_to '正答率', account_path(current_user.id) %>
-            <%= link_to '復習', score_path(current_user.id) %>
-            <%= link_to 'マイページ', mypage_path(current_user.id) %>
-            <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-            <%= current_user.name%>
+
+            <li><%= link_to 'カレンダー', calendars_path %></li>
+            <li><%= link_to '勉強する', calendar_path(current_user.id) %></li>
+            <li><%= link_to '勉強する', timers_path, :onclick=>"window.open(this.href,'hoge', 'height=400, width=800');return false;" %></li>
+            <li><%= link_to '正答率', account_path(current_user.id) %></li>
+            <li><%= link_to 'アカウント編集', edit_user_registration_path %></li>
+            <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+            <li><%= current_user.id%></li>
+
         <% else %>
-            <%= link_to '新規登録', new_user_registration_path %>
-            <%= link_to 'ログイン', new_user_session_path %>
-            <% end %>
+            <li><%= link_to '新規登録', new_user_registration_path %></li>
+            <li><%= link_to 'ログイン', new_user_session_path %></li>
+        <% end %>
+        </ul>
         </nav>
     </header>
  
