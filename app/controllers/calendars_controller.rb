@@ -1,4 +1,17 @@
 class CalendarsController < ApplicationController
+  require "date"
+  def index
+    @blo = 0
+    if params[:month].nil? then
+      @today = Date.today
+    else
+      if params[:ch].nil?
+        @today = Date.strptime(params[:month]).last_month
+      else
+        @today = Date.strptime(params[:month]).next_month
+      end
+    end
+  end
 
   def show
     @scores = User.find(params[:id]).scores
