@@ -82,7 +82,8 @@
 
 <body>
 <center>
-  <div id ="calender">
+
+<div id ="calender">
   <p class = "yea"><%= @today.strftime('%Y年%m月')%></p><!--年月の表示　例：2019年8月のところ-->
   <table>
   <tr id = "day">
@@ -101,7 +102,15 @@
 <% 1.upto(5).each do|i|%>
   <tr id = "day">
 <% (d..d.end_of_week(:sunday)).each do|c|%><!--たぶん(c.strftime('%m') == month)?のところで日付が入る日と入らない日を分けてるんだろうけど日付が入る日と入らない日でclassをわけたいため　普通にif文でやってほしい-->
-    <td class = "space"><%= link_to (c.strftime('%m') == month)? c.strftime('%d'): "  ", calendar_path(current_user.id,day:c.strftime("%Y-%m-%d")) ,class: "math"%></td><!-- ここで日付を１日ずつ表示-->
+  <% if c.strftime('%m') == month then %><!--日付はいる日-->
+    <td class = "space">
+    <%= link_to  c.strftime('%d'), calendar_path(current_user.id,day:c.strftime("%Y-%m-%d")) ,class: "math"%>
+    </td>
+  <%else%><!--日付はいらない日 -->
+    <td>
+    <%= " "%>
+    </td>
+  <% end %>
 <% end %>
   </tr>
 <% d = d + 1.week %>
@@ -118,11 +127,11 @@
 <script type="text/javascript">
 
 $(function(){
-    var array_time = [0,10,20,30,40,50,60,70,80,90,100,110,2,130,0,0,10,20,0,40,50,0,70,80,0,30,0,50,60,0,20,100,0,100,0,100];
+    var array_time = gon.ans;
     //    1  2  3  4  5  6  7  8  9 10  11  12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31
 
     var settei;
-    for(i = 0; i < 31; i++){//31に月の日数を入れてほしい
+    for(i = 0; i < gon.last; i++){//31に月の日数を入れてほしい
        $('#day .space').html(function(index,element){
     if(index   == i)
     {

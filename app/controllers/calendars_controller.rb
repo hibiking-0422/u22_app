@@ -1,6 +1,8 @@
 class CalendarsController < ApplicationController
   require "date"
   def index
+    scores = User.find(current_user.id).scores
+
     @blo = 0
     if params[:month].nil? then
       @today = Date.today
@@ -11,6 +13,28 @@ class CalendarsController < ApplicationController
         @today = Date.strptime(params[:month]).next_month
       end
     end
+
+    first = @today.at_beginning_of_month
+    last  = @today.at_end_of_month
+
+    @months = []
+    loop do
+      @months.push(Field.pra(first.strftime("%Y-%m-%d")))
+      if first == last then
+        break
+      end
+      first = first + 1
+    end
+ 
+
+    @ans = []
+    @months.each do |month|
+      @ans.push(scores.where(study_day:month).where(answer:'○').size)
+    end
+
+    gon.ans = @ans
+    gon.last = last
+
   end
 
   def show
