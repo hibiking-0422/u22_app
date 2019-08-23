@@ -2,6 +2,7 @@ class MypagesController < ApplicationController
   def show
     @scores = User.find(params[:id]).scores
 
+    if @scores.present?
     ans = @scores.where(answer:"○").size
     total = @scores.size
     @per = ((ans / total.to_f) * 100).floor
@@ -42,5 +43,16 @@ class MypagesController < ApplicationController
         @mu.push(good[0])
       end
     end
+
+      else
+        @level = 0
+        @study_hour = 0
+        @study_minite = 0
+        @study_second = 0
+        @break_hour = 0
+        @break_minite = 0
+        @break_second = 0
+        @per = 0
+      end
   end
 end

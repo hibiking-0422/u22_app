@@ -8,6 +8,7 @@ class AccountsController < ApplicationController
 
     @scores = User.find(params[:id]).scores
 
+    if @scores.present? then
     @ans = "answer"
 
     @total_ans = @scores.where(@ans => "○").count
@@ -27,6 +28,7 @@ class AccountsController < ApplicationController
     @fin_fields = Field.aka(@scores,"fin_field")
 
     @test = "test"
+    end
   end
 end
 
