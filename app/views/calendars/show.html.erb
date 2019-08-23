@@ -3,29 +3,81 @@
 </head>
 
 <style>
-#ex_chart {max-width:640px;max-height:480px;}
-</style>
+#ex_chart {
+    max-width:45%;
+    max-height:45%;
+    margin-left:10%;
+    float:left;
+}
 
+#main_date {
+    overflow:  hidden; 
+}
+
+
+
+#main_date p{
+    position: relative;
+    top: 50px;
+    bottom: 10px;
+    font-size:30px;
+}
+
+h3{
+    text-align: center;
+    color: #010079;
+  text-shadow: 0 0 5px white;
+  
+  background: -webkit-repeating-linear-gradient(-45deg, #cce7ff, #cce7ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+  background: repeating-linear-gradient(-45deg, #cce7ff, #cce7ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+}
+p{
+    text-align:center;
+    font-size:20px;
+}
+
+#study_time{
+    align:center;
+    font-size:20px;
+}
+
+#bunya{
+    text-align:center;
+    font-size:20px;
+}
+
+.red em{
+    color:red;
+}
+
+.blue em{
+    color:blue;
+}
+
+</style>
+<h3>前の成績と比較</h3>
+<div id = "main_date">
 <canvas id="ex_chart"></canvas>
 
-<%=@day%>の正答率:<%=@seito_per[2]%>% <%=@seito_per[1]%>問中<%=@seito_per[0]%>問正解<br>
+<p><%=@day%>の正答率:<%=@seito_per[2]%>% <%=@seito_per[1]%>問中<%=@seito_per[0]%>問正解</p>
 
 <%if @yesterday.present?%>
-<%=@yesterday%>の正答率:<%=@yes_seito_per[2]%>%<br><br>
-前回よりも<%=@dif%>%<%=@wo%><br><br>
+<p><%=@yesterday%>の正答率:<%=@yes_seito_per[2]%>%</p>
+<p>前回よりも<%=@dif%>%<%=@wo%></p>
 <% end %>
+</div>
+<h3>分野別の正答率</h3>
+<p>ストラテジ系    :<%=@stra_per[2]%>% <%=@stra_per[1]%>問中<%=@stra_per[0]%>問正解</p>
+<p>マネジメント系  :<%=@mana_per[2]%>% <%=@mana_per[1]%>問中<%=@mana_per[0]%>問正解</p>
+<p>テクノロジ系    :<%=@tec_per[2]%>% <%=@tec_per[1]%>問中<%=@tec_per[0]%>問正解</p><br>
 
-分野別の正答率<br><br>
-ストラテジ系    :<%=@stra_per[2]%>% <%=@stra_per[1]%>問中<%=@stra_per[0]%>問正解<br>
-マネジメント系  :<%=@mana_per[2]%>% <%=@mana_per[1]%>問中<%=@mana_per[0]%>問正解<br>
-テクノロジ系    :<%=@tec_per[2]%>% <%=@tec_per[1]%>問中<%=@tec_per[0]%>問正解<br><br>
 
-
-
+<h3>勉強時間</h3>
+<center>
 <%if false%>
-<table>
+<table id = "study_time">
     <% @calenders.each do |calender| %>
-      <tr>
+      <tr class = "time">
         <td>id:<%= calender.user_id %></td>
         <td><%= calender.study_time %>時間</td>
         <td><%= calender.break_time %>時間</td>
@@ -37,10 +89,27 @@
 </table>
 <% end %>
 
-<br>
-
-総勉強時間:<%=@study_hour%>時間<%=@study_minite%>分<%=@study_second%>秒<br>
-総休憩時間:<%=@break_hour%>時間<%=@break_minite%>分<%=@break_second%>秒<br><br>
+<table id = "study_time" >
+<tr class = "time" >
+    <td>総勉強時間:</td>
+    <td><%=@study_hour%></td>
+    <td>時間</td>
+    <td><%=@study_minite%></td>
+    <td>分</td>
+    <td><%=@study_second%></td>
+    <td>秒</td>
+</tr>
+<tr class = "time">
+    <td>総休憩時間:</td>
+    <td><%=@break_hour%></td>
+    <td>時間</td>
+    <td><%=@break_minite%></td>
+    <td>分</td>
+    <td><%=@break_second%></td>
+    <td>秒</td>
+</tr>
+</table>
+</center>
 <% n = 1 %>
 <% @calenders.each do |calender|%>
     <%= n %>回目
@@ -49,16 +118,17 @@
     <% n += 1%>
 <% end %>
 
-<br>
-得意分野
+<h3>得意分野・不得意分野</h3>
+<div id = "bunya">
+<em class = "red">得意分野</em>
 <% @su.each do |s|%>
     :<%=s%> 
 <% end %>
-<br>
-苦手分野
+<em class = "blue">苦手分野</em>
 <% @mu.each do |m|%>
     :<%=m%> 
 <% end %>
+</div>
 <br><br>
 <%= link_to "Back", :back %>
 <script>
