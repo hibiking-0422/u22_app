@@ -1,4 +1,8 @@
 class MypagesController < ApplicationController
+
+  def index
+    
+  end
   def show
     @scores = User.find(params[:id]).scores
 
