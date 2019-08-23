@@ -17,7 +17,7 @@
 </style>
 <center>
 <h1>成績一覧</h1>
-<% if @gene.present? then%>
+<% if @ch.present? then%>
 <table>
  <% @genes.each do |gene|%>
  <button id =  "<%=gene[0] + '1'%>">
@@ -27,10 +27,10 @@
  </button>
 <% end %>
 </table>
-<% end %>
+
 
 <div id = "texbox">
-<% if @gene.present? then%>
+
 <% @fields.each do |field|%><!-- テクノロジ系・ストラテジ系・マネジメント系の順に表示-->
 <table id = "<%=field%>">
 <th><%=field%></th><!-- 分類名表示-->
@@ -44,12 +44,12 @@
  </tr>
  <% end %>
 </table>
+
+
+
 <% end %>
 
 
-<% end %>
-
-<% if @gene.present? then%>
 <% @fin_fields.each do |fin_field|%>
 <table id = "<%=fin_field%>">
 <th><%=fin_field%></th><!-- 分類名表示-->

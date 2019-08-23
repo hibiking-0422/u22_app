@@ -27,7 +27,7 @@ class AccountsController < ApplicationController
     @fields = Field.aka(@scores,"field")
     @fin_fields = Field.aka(@scores,"fin_field")
 
-    @test = "test"
+    @ch = 1
     end
   end
 end
