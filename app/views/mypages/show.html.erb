@@ -2,9 +2,9 @@
 レベル:<%=current_user.level + @level%><br><br>
 総勉強時間:<%=@study_hour%>時間<%=@study_minite%>分<%=@study_second%>秒<br>
 総休憩時間:<%=@break_hour%>時間<%=@break_minite%>分<%=@break_second%>秒<br><br>
-全体正答率:<%=@per%>%<br><brif
+全体正答率:<%=@per%>%<br><br>
 
-<% if @su.present? %>
+
 得意分野
 <% @su.each do |s|%>
     :<%=s%> 
@@ -13,7 +13,6 @@
 苦手分野
 <% @mu.each do |m|%>
     :<%=m%> 
-<% end %>
 <% end %>
 <br><br>
 <button><%= link_to 'アカウント編集', edit_user_registration_path %></button>
