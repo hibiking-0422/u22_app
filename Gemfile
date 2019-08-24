@@ -65,6 +65,5 @@ gem 'devise'
 gem 'jquery-rails'
 gem 'roo'
 gem "gon"
-gem 'jquery-turbolinks'
 gem "nokogiri", ">= 1.10.4"
 gem "bootstrap", ">= 4.3.1"
