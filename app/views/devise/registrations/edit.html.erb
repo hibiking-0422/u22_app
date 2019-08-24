@@ -4,6 +4,7 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 <br>
+<div class="form">
   <div class="field">
     <%= f.label :アカウント名 %> <br />
     <%= f.text_field :name %>
@@ -36,9 +37,10 @@
   <div class="actions">
     <%= f.submit "変更" %>
   </div>
+  </div>
 <% end %>
 <br>
 <br>
-<p> <%= button_to "アカウントを削除する", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p> <%= button_to "アカウント削除", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 <%= link_to "Back", :back %>
 </center>

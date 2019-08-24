@@ -4,6 +4,7 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 <br><br>
+<div class="form">
   <div class="field">
     <%= f.label :名前 %> <br />
     <%= f.text_field :name %>
@@ -26,6 +27,7 @@
 <br>
   <div class="actions">
     <%= f.submit "送信" %>
+  </div>
   </div>
 <% end %>
 <br>
