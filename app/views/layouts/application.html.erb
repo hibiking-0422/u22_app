@@ -56,7 +56,7 @@
         <% if user_signed_in? %>
 
             <li><%= link_to 'カレンダー', calendars_path %></li>
-            <li><%= link_to '勉強する', timers_path, :onclick=>"window.open(this.href,'hoge', 'height=400, width=800');return false;" %></li>
+            <li id = "ouyou"><%= link_to '勉強する', timers_path, :onclick=>"window.open(this.href,'hoge', 'height=150, width=405');return false;" %></li>
             <li><%= link_to '正答率', account_path(current_user.id) %></li>
             <li><%= link_to '復習', score_path(current_user.id) %></li>
             <li><%= link_to 'マイページ', mypage_path(current_user.id) %></li>
@@ -80,3 +80,20 @@
 </html>
 
 <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+<script type="text/javascript">
+
+
+$('#ouyou').on('click',function(){
+ var cc = 0;
+  cc++;
+
+ if(cc == 1){
+ window.open('https://www.ap-siken.com/apkakomon.php',"応用情報","resizable=yes,scrollbars=yes","mywindow","outerWidth="+
+ screen.availWidth+",outerHeight="+screen.availHeight+" ");
+ }
+
+
+});
+
+</script>
