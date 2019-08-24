@@ -3,14 +3,69 @@
  <script src="jquery-ui-1.10.3.custom.min.js"></script>
 </head>
 <style type = "text/css">
+
+h1 {
+  color: #6cb4e4;
+  text-align: center;
+  padding: 0.25em;
+  border-top: solid 2px #6cb4e4;
+  border-bottom: solid 2px #6cb4e4;
+  width:50%;
+  background: -webkit-repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+  background: repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+}
+
 #texbox{
+
+    
+    margin: 2em 0;
+   
+   
+    width: 600px;
+    align: center;
 
     padding: 0.5em 1em;
     margin: 2em 0;
-    border: double 5px #000000;
-    
-    width: 600px;
-    text-align: center;
+    color: #474747;
+    background: #fff;
+    border-left: double 7px #4ec4d3;/*左線*/
+    border-right: double 7px #4ec4d3;/*右線*/
+}
+
+button{
+  margin-left:40px;
+  margin-right:40px;
+  padding:10px;
+}
+
+.big{
+  text-align:center;
+  margin:  0 auto;  
+  font-size:20px;
+  color:red;
+}
+
+
+/* ここから下がボタンのCSS　*/
+.butn {
+  display: inline-block;
+  max-width: 180px;
+  text-align: left;
+  border: 2px solid #4ec4d3;
+  font-size: 16px;
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: .4s;
+  background-color:#fff;
+}
+
+.butn:hover {
+  background-color: #ccc;
+  border-color: #4ec4d3;
+  color: #000;
 }
 
 
@@ -18,9 +73,9 @@
 <center>
 <h1>成績一覧</h1>
 <% if @ch.present? then%>
-<table>
+<table  button  >
  <% @genes.each do |gene|%>
- <button id =  "<%=gene[0] + '1'%>">
+ <button id =  "<%=gene[0] + '1'%>" class= "butn">
    <%=gene[0]%><br>
    <span><%=gene[3]%>%<br></span>
    <%=gene[2]%>問中<%=gene[1]%>問正解
@@ -32,12 +87,12 @@
 <div id = "texbox">
 
 <% @fields.each do |field|%><!-- テクノロジ系・ストラテジ系・マネジメント系の順に表示-->
-<table id = "<%=field%>">
-<th><%=field%></th><!-- 分類名表示-->
+<table id = "<%=field%>" >
+<th class= "big" colspan="3"><%=field%></th><!-- 分類名表示-->
  <% @fin_genes.each do |fin_gene|%>
  <tr id = "<%=fin_gene[0]+'1'%>">
    <% if field == fin_gene[4]%>
-     <td align="center"><%=fin_gene[0]%></td><!--小分類-->
+     <td align="left"><%=fin_gene[0]%></td><!--小分類-->
      <td align="right">　　<%=fin_gene[3]%>%</td><!--正答率-->
      <td align="right">　　<%=fin_gene[2]%>問中<%=fin_gene[1]%>問正解</td><!--正解した数-->
    <% end %>
@@ -51,12 +106,14 @@
 
 
 <% @fin_fields.each do |fin_field|%>
-<table id = "<%=fin_field%>">
-<th><%=fin_field%></th><!-- 分類名表示-->
+<table id = "<%=fin_field%>" >
+<tr>
+<th colspan="3" class= "big" ><%=fin_field%></th><!-- 分類名表示-->
+</tr>
  <% @questions.each do |question|%>
- <tr class = "<%=question%>">
+ <tr class = "<%=question%>" >
    <% if fin_field == question[4]%><!---->
-     <td align="right">　　<%= link_to question[0].match(/","/).post_match.gsub("\"", '').gsub("\)",''), "#{question[0].match(/"/).post_match.match(/","/).pre_match}",:onclick=>"window.open(this.href,'hoge', 'height=400, width=800');return false;" %></td><!--問題名-->
+     <td align="left">　　<%= link_to question[0].match(/","/).post_match.gsub("\"", '').gsub("\)",''), "#{question[0].match(/"/).post_match.match(/","/).pre_match}",:onclick=>"window.open(this.href,'hoge', 'height=400, width=800');return false;" %></td><!--問題名-->
      <td align="right">　　<%=question[3]%>%</td><!--正答率-->
      <td align="right">　　<%=question[2]%>問中<%=question[1]%>問正解</td>
    <% end %>
