@@ -129,7 +129,16 @@ p{
     :<%=m%> 
 <% end %>
 </div>
+
 <br><br>
+
+<center>
+<h3>問題一覧</h3>
+<% @questions.each do |question|%>
+<%= link_to question.question.match(/","/).post_match.gsub("\"", '').gsub("\)",''), "#{question.question.match(/"/).post_match.match(/","/).pre_match}",:onclick=>"window.open(this.href,'hoge', 'height=400, width=800');return false;" %><br>
+<% end %>
+</center>
+
 <%= link_to "Back", :back %>
 <script>
 var ctx = document.getElementById('ex_chart');

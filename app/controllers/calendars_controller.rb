@@ -127,5 +127,7 @@ class CalendarsController < ApplicationController
       end
     end
 
+    @questions = User.find(params[:id]).scores.where(study_day:@day)
+
   end
 end
