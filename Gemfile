@@ -67,3 +67,4 @@ gem 'roo'
 gem "gon"
 gem "nokogiri", ">= 1.10.4"
 gem "bootstrap", ">= 4.3.1"
+gem "bootstrap_form", ">= 4.2.0"
