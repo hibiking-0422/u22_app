@@ -46,6 +46,7 @@
     .navbar{
       background: #CCCCCC;
     }
+
     input[type="submit"] {
       display: inline-block;
       width: 180px;
@@ -63,6 +64,7 @@
   input[type="submit"]:hover {
       background-position: right center;
     }
+    background-image: image-url("haikei.png");
   </style>
  
   <body>
@@ -86,12 +88,12 @@
         </ul>
         </nav>
     </header>
- 
+    <div class="jumbotron">
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
  
     <%= yield %>
- 
+ </div>
   </body>
 </html>
 
