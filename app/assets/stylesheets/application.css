@@ -14,7 +14,7 @@
  *= require_self
  */
  input[type="text"] {
-    width: 300px;
+    width: 60%;
     height: 40px;
 -webkit-box-shadow: 0px 1px rgba(255, 255, 255, 0.5);
 -moz-box-shadow: 0px 1px rgba(255, 255, 255, 0.5);
@@ -25,7 +25,7 @@ border-radius: 3px;
 }
 
 input[type="password"] {
-    width: 300px;
+    width: 60%;
     height: 40px;
 -moz-box-shadow: 0px 1px rgba(255, 255, 255, 0.5);
 box-shadow: 0px 1px rgba(255, 255, 255, 0.5);
@@ -35,7 +35,7 @@ border-radius: 3px;
 }
 
 input[type="email"] {
-    width: 300px;
+    width: 60%;
     height: 40px;
 -moz-box-shadow: 0px 1px rgba(255, 255, 255, 0.5);
 box-shadow: 0px 1px rgba(255, 255, 255, 0.5);
@@ -49,4 +49,11 @@ border-radius: 3px;
     padding: 15px;
     width: 30%;
     border-radius: 10px/20px ;
+}
+.jumbotron {
+	background: url(haikei.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height:100vh
 }
