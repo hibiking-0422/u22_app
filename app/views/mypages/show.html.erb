@@ -72,6 +72,9 @@ h3::after {
 <center>
 <h1>マイページ</h1>
 <div id = "main">
+<div align="right">
+<%= link_to image_tag('gear.png',size: '200x100'), edit_user_registration_path %>
+</div>
 <br>
 <br>
 <h3>ユーザ名</h3>
@@ -105,7 +108,7 @@ h3::after {
 </div>
 <br><br>
 </div>
-<button><%= link_to 'アカウント編集', edit_user_registration_path %></button>
+
 <br>
 </center>
 </body>
