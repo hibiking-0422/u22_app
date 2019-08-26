@@ -78,6 +78,7 @@
             <li><%= link_to '正答率', account_path(current_user.id) %></li>
             <li><%= link_to '復習', score_path(current_user.id) %></li>
             <li><%= link_to 'マイページ', mypage_path(current_user.id) %></li>
+            <li><%= link_to 'マイページ', micropost_path(current_user.id) %></li>
             <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
             <li><%= current_user.id%></li>
 

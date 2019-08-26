@@ -68,3 +68,6 @@ gem "gon"
 gem "nokogiri", ">= 1.10.4"
 gem "bootstrap", ">= 4.3.1"
 gem "bootstrap_form", ">= 4.2.0"
+gem 'faker',                   '1.7.3'
+gem 'will_paginate',           '3.1.6'
+gem 'bootstrap-will_paginate', '1.0.0'
