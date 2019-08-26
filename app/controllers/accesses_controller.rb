@@ -5,7 +5,7 @@ class AccessesController < ApplicationController
     end
   def hello
       @micropost  = current_user.microposts.build
-      @feed_items = current_user.feed
+      @feed_items = Micropost.all
   end
 
   def goodbye
