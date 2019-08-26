@@ -7,5 +7,7 @@ class User < ApplicationRecord
     has_many :scores
     has_many :calenders
     has_many :microposts, dependent: :destroy
-
+    def feed
+      Micropost.where("user_id = ?", id)
+    end
 end
