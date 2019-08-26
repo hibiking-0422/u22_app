@@ -1,0 +1,15 @@
+
+
+<%= image_tag current_user.gravatar_url,  class: 'maru'%>
+<h1><%= current_user.name %></h1>
+<span><%= pluralize(current_user.microposts.count, "投稿") %></span>
+
+<style>
+.maru{
+  border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+  width:  80px;       /* ※縦横を同値に */
+  height: 80px;       /* ※縦横を同値に */
+  display:inline-block;
+  vertical-align:top; /*縦方向の揃え位置を指定*/
+}
+</style>

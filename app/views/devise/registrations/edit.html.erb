@@ -5,6 +5,16 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 <br>
 <div class="form">
+プロフィール画像
+<br>
+<%= image_tag current_user.gravatar_url,  class: 'maru'%>
+<br>
+<br>
+<div class="ul">
+※プロフィール画像の変更は<%=link_to "gravatar", "https://ja.gravatar.com/",:target=>["_blank"] %>をご利用ください。
+</div>
+<br>
+<br>
   <div class="field">
     <%= f.label :アカウント名 %> <br />
     <%= f.text_field :name %>
@@ -44,3 +54,16 @@
 <p> <%= button_to "アカウント削除", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 <%= link_to "Back", :back %>
 </center>
+
+<style>
+.maru{
+  border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+  width:  120px;       /* ※縦横を同値に */
+  height: 120px;       /* ※縦横を同値に */
+  display:inline-block;
+  vertical-align:top; /*縦方向の揃え位置を指定*/
+}
+.ul {
+  opacity: 0.6;
+}
+</style>

@@ -1,0 +1,61 @@
+<li>
+<div class="box2">
+<div class="moji">
+<%= micropost.user.name  %>
+</div>
+<br>
+<%= image_tag micropost.user.gravatar_url,  class: 'maru'%>
+
+<div class="box1">
+<%= simple_format(micropost.content)%><br>
+</div>
+<%= micropost.created_at.strftime("%Y年%m月%d日 %H:%M") %>
+</div>
+</li>
+
+<style>
+.maru{
+  border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+  width:  80px;       /* ※縦横を同値に */
+  height: 80px;       /* ※縦横を同値に */
+  display:inline-block;
+  vertical-align:top; /*縦方向の揃え位置を指定*/
+}
+.box1 {
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    font-weight: bold;
+    border: solid 3px #000000;
+}
+.box1 p {
+    margin: 0; 
+    padding: 0;
+}
+.moji{
+  position: relative;
+  width: 10%;
+  padding: 0.6em;
+  background: #e0edff;
+}
+.moji:after {
+  position: absolute;
+  content: '';
+  top: 100%;
+  left: 30px;
+  border: 15px solid transparent;
+  border-top: 15px solid #e0edff;
+  width: 0;
+  height: 0;
+}
+.box2 {
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    background: #FFF;
+    border: solid 3px #6091d3;/*線*/
+    border-radius: 10px;/*角の丸み*/
+}
+.box2 p {
+    margin: 0; 
+    padding: 0;
+}
+</style>

@@ -1,0 +1,22 @@
+<%= form_for(@micropost) do |f| %>
+    <div class="field">
+      <%= f.text_area :content,placeholder: "新子投稿...." %>
+    </div>
+    <center>
+    <%= f.submit "Post", class: "btn btn-primary" %>
+    </center>
+  <% end %>
+
+  <style>
+
+
+  .field{
+    width:50%;
+    hight:50%;
+  }
+  textarea {s
+  resize: none;
+  width:400px;
+  height:300px;
+}
+  </style>

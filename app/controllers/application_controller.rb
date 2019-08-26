@@ -7,10 +7,10 @@ class ApplicationController < ActionController::Base
  
 
     def after_sign_in_path_for(resource)
-      calendars_url
+      micropost_path(current_user.id)
       end
       
       def after_sign_out_path_for(resource)
-        new_user_registration_url
+        root_url
       end
 end

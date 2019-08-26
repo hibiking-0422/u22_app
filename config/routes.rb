@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'mypages/show'
- resources :calendars,:scores,:accounts,:timers,:accesses,:mypages
+ resources :calendars,:scores,:accounts,:timers,:accesses,:mypages,:microposts
  
   resources :scores do
     collection { post :import }
@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   get 'calendars/show'
   devise_for :users
 
-  root 'accesses#hello'
+  root 'accesses#goodbye'
   
+  resources :accesses do
+    collection { get :hello }
+  end
 end
