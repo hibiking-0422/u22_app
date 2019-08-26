@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   get 'calendars/show'
   devise_for :users
 
-  root 'accesses#hello'
+  root 'accesses#goodbye'
   
+  resources :accesses do
+    collection { get :hello }
+  end
 end

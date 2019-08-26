@@ -64,7 +64,13 @@ h3::after {
   border-width: 0 15px 15px 0;
   border-bottom-color: #ccc;
 }
-
+.maru{
+  border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+  width:  120px;       /* ※縦横を同値に */
+  height: 120px;       /* ※縦横を同値に */
+  display:inline-block;
+  vertical-align:top; /*縦方向の揃え位置を指定*/
+}
  
 </style>
 
@@ -75,6 +81,7 @@ h3::after {
 <div align="right">
 <%= link_to image_tag('gear.png',size: '200x100'), edit_user_registration_path %>
 </div>
+<%= image_tag current_user.gravatar_url,  class: 'maru'%>
 <br>
 <br>
 <h3>ユーザ名</h3>
@@ -94,6 +101,7 @@ h3::after {
 </div>
 <br><br>
 <h3>得意分野</h3>
+<% if @su.present? %>
 <div class = "name">
 <% @su.each do |s|%>
     :<%=s%> 
@@ -104,6 +112,7 @@ h3::after {
 <div class = "name">
 <% @mu.each do |m|%>
     :<%=m%> 
+<% end %>
 <% end %>
 </div>
 <br><br>

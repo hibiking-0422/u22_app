@@ -1,16 +1,18 @@
 class MicropostsController < ApplicationController
 
     def show
-        @user = User.find(params[:id])
-        @microposts = @user.microposts.paginate(page: params[:page])
+      @micropost  = current_user.microposts.build
+      @feed_items = Micropost.all
       end
       def create
+        @feed_items = Micropost.all
+
         @micropost = current_user.microposts.build(micropost_params)
         if @micropost.save
           flash[:success] = "Micropost created!"
-          redirect_to root_url
+          redirect_to micropost_path(current_user.id)
         else
-          render 'accesses/hello'
+          redirect_to micropost_path(current_user.id)
         end
       end
     

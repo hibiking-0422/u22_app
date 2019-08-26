@@ -72,13 +72,12 @@
           <a class="navbar-brand" href="#">LOGO</a>
         <ul class="nav">  
         <% if user_signed_in? %>
-
+            <li><%= link_to 'タイムライン',  micropost_path(current_user.id) %></li>
             <li><%= link_to 'カレンダー', calendars_path %></li>
             <li id = "ouyou"><%= link_to '勉強する', timers_path, :onclick=>"window.open(this.href,'hoge', 'height=150, width=405');return false;" %></li>
             <li><%= link_to '正答率', account_path(current_user.id) %></li>
             <li><%= link_to '復習', score_path(current_user.id) %></li>
             <li><%= link_to 'マイページ', mypage_path(current_user.id) %></li>
-            <li><%= link_to 'マイページ',  root_path %></li>
             <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
             <li><%= current_user.id%></li>
 

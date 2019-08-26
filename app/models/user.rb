@@ -7,4 +7,6 @@ class User < ApplicationRecord
     has_many :scores
     has_many :calenders
     has_many :microposts, dependent: :destroy
+include Gravtastic
+ gravtastic
 end

@@ -1,19 +1,46 @@
-<% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= @user.name %>
-      </h1>
-    </section>
-  </aside>
-  <div class="col-md-8">
-    <% if @user.microposts.any? %>
-      <h3>Microposts (<%= @user.microposts.count %>)</h3>
-      <ol class="microposts">
-        <%= render @microposts %>
-      </ol>
-      <%= will_paginate @microposts %>
-    <% end %>
+<aside class="col-md-3">
+
+<div class="mybox">
+<center>
+  <section class="user_info">
+    <%= render 'shared/user_info' %>
+  </section>
+  </center>
+  <section class="micropost_form">
+    <%= render 'shared/micropost_form' %>
+  </section>
   </div>
+
+</aside>
+<div class="col-md-8">
+<center>
+  <h3>タイムライン</h3>
+</center>
+  <%= render 'shared/feed' %>
 </div>
+</div>
+
+<style>
+aside {
+  textarea {
+    height: 100px;
+    margin-bottom: 5px;
+  }
+}
+
+.mybox {
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    color: #FFF;
+    background: #6eb7ff;
+    border-bottom: solid 6px #3f87ce;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 9px;
+}
+.mybox p {
+    margin: 0; 
+    padding: 0;
+}
+
+</style>
