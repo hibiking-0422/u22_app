@@ -4,7 +4,7 @@ class MicropostsController < ApplicationController
       @micropost  = current_user.microposts.build
       @feed_items = Micropost.all
       end
-      def create
+    def create
         @feed_items = Micropost.all
 
         @micropost = current_user.microposts.build(micropost_params)
@@ -22,6 +22,6 @@ class MicropostsController < ApplicationController
 
       def micropost_params
         params.require(:micropost).permit(:content)
-      end
+    end
       
 end
