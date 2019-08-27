@@ -36,8 +36,12 @@ h1 {
 h3 {
   position: relative;
   padding: .3em;
+  padding-bottom :10px;
+
+  margin-left:10%;
   background-color:#c2edff;
   width:10%;
+  
 }
 h3 span {
   display: block;
@@ -81,34 +85,36 @@ h3::after {
 <div align="right">
 <%= link_to image_tag('gear.png',size: '200x100'), edit_user_registration_path %>
 </div>
-<%= image_tag current_user.gravatar_url,  class: 'maru'%>
 <br>
+<div align="left"><h3>ユーザ名</h3></div>
+<table class = "name">
+<tr>
+<td align = "center"><%= image_tag current_user.gravatar_url,  class: 'maru'%></td> 
+<td align = "left" valign="middle"><%=current_user.name%>  Lv.<%=current_user.level + @level%></td>
+</tr>
+</table>
 <br>
-<h3>ユーザ名</h3>
-<div class = "name">
-<%=current_user.name%>  Lv.<%=current_user.level + @level%>
-</div>
-<br><br>
-<h3>勉強時間</h3>
-<div class = "name">
-総勉強時間:<%=@study_hour%>時間<%=@study_minite%>分<%=@study_second%>秒<br>
-総休憩時間:<%=@break_hour%>時間<%=@break_minite%>分<%=@break_second%>秒<br>
-</div>
-<br><br>
-<h3>正答率</h3>
-<div class = "name">
-全体正答率:<%=@per%>%
-</div>
-<br><br>
-<h3>得意分野</h3>
+<div align="left"><h3>学習状況</h3></div>
+<table class = "name">
+<tr>
+<td><em>総勉強時間:</em><%=@study_hour%>時間<%=@study_minite%>分<%=@study_second%>秒</td>
+<td><em>総休憩時間:</em><%=@break_hour%>時間<%=@break_minite%>分<%=@break_second%>秒</td>
+</tr>
+<tr>
+<td></td>
+<td  align="center">     全体の正答率:<%=@per%>%</td>
+</tr>
+</table>
+<br>
+<div align="left"><h3>得意分野</h3></div>
 <% if @su.present? %>
 <div class = "name">
 <% @su.each do |s|%>
     :<%=s%> 
 <% end %>
 </div>
-<br><br>
-<h3>苦手分野</h3>
+<br>
+<div align="left"><h3>苦手分野</h3></div>
 <div class = "name">
 <% @mu.each do |m|%>
     :<%=m%> 
