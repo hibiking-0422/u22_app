@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RailsTest</title>
+    <title>ApDiary</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
  
@@ -68,6 +68,7 @@
   </style>
  
   <body>
+  <%= favicon_link_tag('logo.ico') %>
         <nav class="navbar navbar-inverse navbar-fixed-top">
         <%= link_to root_path  do %>
           <%= image_tag 'logo.png'%>
@@ -81,7 +82,6 @@
             <li><%= link_to '復習', score_path(current_user.id) %></li>
             <li><%= link_to 'マイページ', mypage_path(current_user.id) %></li>
             <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-            <li><%= current_user.id%></li>
 
         <% else %>
             <li><%= link_to '新規登録', new_user_registration_path %></li>

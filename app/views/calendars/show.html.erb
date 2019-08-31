@@ -54,17 +54,54 @@ p{
     color:blue;
 }
 
+.box15 {
+    padding: 0.2em 0.5em;
+    margin: 2em 0;
+    color: #565656;
+    background: #ffeaea;
+    box-shadow: 0px 0px 0px 10px #ffeaea;
+    border: dashed 2px #ffc3c3;
+    border-radius: 8px;
+}
+.box15 p {
+    margin: 0; 
+    padding: 0;
+}
+.box23 {
+    position: relative;
+    margin: 2em 0 2em 40px;
+    padding: 8px 15px;
+    background: #fff0c6;
+    border-radius: 30px;
+}
+.box23:before{font-family: FontAwesome;
+    content: "\f111";
+    position: absolute;
+    font-size: 15px;
+    left: -40px;
+    bottom: 0;
+    color: #fff0c6;
+}
+.box23:after{
+    font-family: FontAwesome;
+    content: "\f111";
+    position: absolute;
+    font-size: 23px;
+    left: -23px;
+    bottom: 0;
+    color: #fff0c6;
+}
+.box23 p {
+    margin: 0; 
+    padding: 0;
+}
 </style>
 <h3>前の成績と比較</h3>
 <div id = "main_date">
 <canvas id="ex_chart"></canvas>
 
-<p><%=@day%>の正答率:<%=@seito_per[2]%>% <%=@seito_per[1]%>問中<%=@seito_per[0]%>問正解</p>
-
-<%if @yesterday.present?%>
-<p><%=@yesterday%>の正答率:<%=@yes_seito_per[2]%>%</p>
-<p>前回よりも<%=@dif%>%<%=@wo%></p>
-<% end %>
+<br><br><br><br><br>
+<h1>前回よりも正答率が<%=@dif%>%<%=@wo%></h1>
 </div>
 <h3>分野別の正答率</h3>
 <p>ストラテジ系    :<%=@stra_per[2]%>% <%=@stra_per[1]%>問中<%=@stra_per[0]%>問正解</p>
@@ -112,20 +149,22 @@ p{
 </center>
 
 <h3>反省点</h3>
+<center>
 <% n = 1 %>
 <% @calenders.each do |calender|%>
-    <%= n %>回目
+    <div class="box15">
     <%= calender.reflection%><br>
-    -------------------------------------------<br>
     <% n += 1%>
+    </div>
 <% end %>
-
+</center>
 <h3>得意分野・不得意分野</h3>
 <div id = "bunya">
 <em class = "red">得意分野</em>
 <% @su.each do |s|%>
     :<%=s%> 
 <% end %>
+<br>
 <em class = "blue">苦手分野</em>
 <% @mu.each do |m|%>
     :<%=m%> 
