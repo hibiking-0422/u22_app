@@ -69,7 +69,9 @@
  
   <body>
         <nav class="navbar navbar-inverse navbar-fixed-top">
-          <a class="navbar-brand" href="#">LOGO</a>
+        <%= link_to root_path  do %>
+          <%= image_tag 'logo.png'%>
+        <% end %>
         <ul class="nav">  
         <% if user_signed_in? %>
             <li><%= link_to 'タイムライン',  micropost_path(current_user.id) %></li>
