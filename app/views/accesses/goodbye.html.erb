@@ -1,3 +1,129 @@
+<style>
+h1 {
+  background: linear-gradient(transparent 70%, #a7d6ff 70%);
+  margin:2em;
+}
+
+#imag{
+    border: 4px solid #ccc;
+    border-radius: 240px 15px 185px 15px / 15px 200px 15px 185px;
+    margin: 2em 0;
+    padding: 0em;
+
+
+}
+#mozi{
+font-size:20px;
+}
+#box {
+    border: 4px double #ccc;
+    margin: 2em 0;
+    padding: 2em 0;
+    font-size:20px;
+    text-align:left;
+}
+
+#box3 {
+    border: 4px double #ccc;
+    margin: 2em 0;
+    padding: 2em 0;
+    font-size:20px;
+    text-align:center;
+}
+
+.center{
+    color:red;
+    text-align:center;
+    font-size:30px;
+}
+
+pre{font-size:20px;}
+
+
+h3 {
+  position: relative;
+  display: inline-block;
+  padding: 0 55px;
+}
+
+h3:before, h3:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  display: inline-block;
+  width: 45px;
+  height: 2px;
+  border-top: solid 1px black;
+  border-bottom: solid 1px black;
+}
+
+h3:before {
+  left:0;
+}
+h3:after {
+  right: 0;
+}
+
+#coment{
+    background-color :#60ffff;
+}
+
+</style>
 <center>
 <h1>ApDiaryとは？</h1>
+<pre id = "mozi">
+ApDiaryとは,ap(応用情報技術者試験)の勉強を手助けしてくれるアプリです！
+応用情報.com（外部サイト）の成績を管理することができます。
+</pre>
+
+<h1>主な機能</h1>
+<br>
+
+<h3>グラフ機能</h3>
+<div id = "imag">
+<%= image_tag 'sore.PNG' %>
+
+
+<pre id = "coment">グラフで前回からの成長を視覚的に得ることができる
+</pre>
+</div>
+
+<h3>カレンダー機能</h3>
+<div id = "imag">
+<%= image_tag "calemders.PNG" %>
+
+<pre id = "coment">
+日付を選択することで、今までどのような勉強をしたか振り返ることができる！
+それに加え、解いた問題数によってカレンダーの色が変わるから自分が頑張って勉強した日が一目でわかる！
+</pre>
+</div>
+<h3>タイムライン機能</h3>
+<div id = "imag">
+<%= image_tag "timeline.PNG" %>
+<pre id = "coment">
+ApDiaryを使っている人同士でチャットができる
+みんなで話し合って楽しく勉強しよう!
+</pre>
+</div>
+<num class="center">*お問い合わせについて</num>
+<div id = "box3">
+<pre>
+お問い合わせは下記のメールアドレスにお願いします
+連絡先:hibi0422@gmail.com
+</pre>
+</div>
+<num class="center">*注意書き</num>
+<div id = "box">
+<pre>・当サイトに搭載されている情報を聞いたことにより、または搭載されていた情報を用いることができなかったことにより、
+  お客様またはその他の方から何らかの損害を被った場合でも当サイトおよび当サイトの情報を提供している第三者は一切責任を負うものではありません。
+  当サイトの内容の正誤に関わらず、それによって被った損害についても一切の責任を負いかねます。
+
+・当サイトに搭載されている情報などは、作成時点のものであり、予告なく変更または廃止される場合がありますので、何卒お願いいたします。
+
+リンク
+・リンクをすることによって、万が一トラブルや損害賠償問題などが発生した場合でも当サイトは一切責任を負いません。
+
+・本Webサイトの情報やURLは永続的な維持をお約束するものではありません。また予告なしに変更する場合もございます。
+</pre>
+</div>
 </center>
