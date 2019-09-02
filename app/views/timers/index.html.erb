@@ -43,7 +43,7 @@
        <center>
         <div class = "taimer">   
         <span>勉強時間</span>   
-        <span id = "study_h">00</span><span id ="colon">:</span><span id = "study_m">00</span><span id ="colon">:</span><span id = "study_s">00</span>
+        <span id = "study_h">00</span><span id ="colon">:</span><span id = "study_m">00</span><span id ="colon">:</span><span id = "study_s">00</span><span>:</span><span id = "study_ms">00</span>
         </div>
       <!--  <div class = "taimer">   
        <span>休憩時間</span>
@@ -64,9 +64,10 @@ $(function(){
     var sec = 0;
     var min = 0;
     var hour = 0;
+    var m_ck =0;
     
-    
-    var st,rt;
+    var ms = 0;
+    var st,rt,mm;
     var study_time = 0;
     var rest_time = 0;
     var ck = 0;
@@ -99,9 +100,6 @@ $(function(){
             $('#h').html(hour);
             min = Math.floor( (study_time -hour*3600) /60);
             $('#m').html(min);
-            
-
-
 
         }
         
@@ -124,6 +122,22 @@ $(function(){
             };    
             
         },1000);
+
+        mm = setInterval(function(){
+            ms++;
+            if(m_ck > 0){
+            $('#study_ms').html(('0' + ms).slice(-2));
+            }
+               
+            if(ms == 100){
+                ms = 0;
+                m_ck++;
+            }
+            
+        },10);
+
+
+        
         
         
     });
