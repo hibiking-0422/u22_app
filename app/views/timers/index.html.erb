@@ -128,7 +128,7 @@ $(function(){
             if(m_ck > 0){
             $('#study_ms').html(('0' + ms).slice(-2));
             }
-               
+
             if(ms == 100){
                 ms = 0;
                 m_ck++;
@@ -136,7 +136,7 @@ $(function(){
             
         },10);
 
-
+        
         
         
         
@@ -150,6 +150,7 @@ $(function(){
          $('#start').prop('disabled', false);
          $('#rest').prop('disabled', true);
         clearInterval(st);
+        clearInterval(mm);
         study_time = sec + min * 60 + hour * 360;
         $('#otamesi').html(study_time);
         
