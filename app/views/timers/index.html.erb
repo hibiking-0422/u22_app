@@ -14,10 +14,14 @@
      height: 50px;              /* 高さ指定 */
     width: 100px;               /* 幅指定 */
     background-color: #fff;     /* 背景色指定 */
-    margin:  30px;              /* 周りの余白指定 */
+    margin:  30px;  
+            /* 周りの余白指定 */
+    margin-left:140px;
     float: left;
     font-size:20px;
     font-style:oblique;
+
+
 }
 
 
@@ -41,12 +45,14 @@
         <span>勉強時間</span>   
         <span id = "study_h">00</span><span id ="colon">:</span><span id = "study_m">00</span><span id ="colon">:</span><span id = "study_s">00</span>
         </div>
-        <div class = "taimer">   
-        <span>休憩時間</span>
+      <!--  <div class = "taimer">   
+       <span>休憩時間</span>
         <span id = "rest_h">00</span><span id ="colon">:</span><span id = "rest_m">00</span><span id ="colon">:</span><span id = "rest_s">00</span><br>
         </div>
         <br><br><br><br>
+      -->
            <div id="buton"><button id = "start" disabled="disabled">スタート</button>　<button id = "rest" disabled="disabled">休憩</button>　<button  id = "stop">保存</button>　<button><%=link_to "終了", new_timer_path %></button></div>
+
         </center>
 
     </body>
@@ -58,6 +64,7 @@ $(function(){
     var sec = 0;
     var min = 0;
     var hour = 0;
+    
     
     var st,rt;
     var study_time = 0;
@@ -88,11 +95,14 @@ $(function(){
         if(study_time > 0){
             sec = study_time % 60;
             $('#s').html(sec);
-             hour = Math.floor(study_time /360);
+             hour = Math.floor(study_time /3600);
             $('#h').html(hour);
-            min = Math.floor( (study_time -hour*360) /60);
+            min = Math.floor( (study_time -hour*3600) /60);
             $('#m').html(min);
-           
+            
+
+
+
         }
         
         
@@ -135,9 +145,9 @@ $(function(){
         }else{
              sec = rest_time_time % 60;
             $('#s').html(sec);
-             hour = Math.floor(rest_time_time /360);
+             hour = Math.floor(rest_time_time /3600);
             $('#h').html(hour);
-            min = Math.floor( (rest_time -hour*360) /60);
+            min = Math.floor( (rest_time -hour*3600) /60);
             $('#m').html(min);
         }
         
