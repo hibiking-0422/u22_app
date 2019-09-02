@@ -1,7 +1,7 @@
 <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-<%=session[:study_time]%><br>
-<%=session[:break_time]%><br>
+勉強時間<%=session[:study_time]%>秒<br>
+休憩時間<%=session[:break_time]%>秒<br>
 <%= form_tag import_scores_path, multipart: true do %>
    <%=hidden_field_tag :study_time,session[:study_time].to_i%>
    <%=hidden_field_tag :break_time,session[:break_time].to_i%>
